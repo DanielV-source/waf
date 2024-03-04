@@ -9,23 +9,77 @@
     android:visibility="visible"
     tools:visibility="visible">
 
-    <Toolbar
-        android:id="@+id/toolbar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@android:color/holo_red_light"
-        android:theme="?attr/actionBarTheme" />
+        android:layout_height="56dp">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:color/holo_red_light"
+            android:theme="?attr/actionBarTheme"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/logoText"
+            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_weight="0"
+            android:clickable="false"
+            android:drawableTint="#FFFFFF"
+            android:ems="10"
+            android:foregroundTint="@color/white"
+            android:gravity="center"
+            android:hyphenationFrequency="normal"
+            android:inputType="text"
+            android:singleLine="false"
+            android:text="Walk &amp; Fight (Logo here)"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white"
+            tools:visibility="visible" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:gravity="center"
         android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/startMsgText"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="408dp"
+            android:layout_weight="1"
+            android:drawableTint="#FFFFFF"
+            android:ems="10"
+            android:foregroundTint="@color/white"
+            android:gravity="center|center_vertical"
+            android:inputType="text"
+            android:singleLine="false"
+            android:text="Start your adventure now! Sign in for free!"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white"
+            android:translationY="100dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="335dp"
+        android:gravity="center|top"
+        android:orientation="horizontal"
+        android:translationY="50dp">
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:translationY="100dp" />
+
     </LinearLayout>
 
 </LinearLayout>
