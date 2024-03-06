@@ -8,44 +8,34 @@
 
     <include layout="@layout/toolbar"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginTop="146dp"
-        android:text="Statistics"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="48sp"/>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginTop="50sp"
-        android:text="Statistical Information"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp" />
-
     <Button
-        android:id="@+id/globalrankingmenu"
+        android:id="@+id/startadventuremenu"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="86dp"
+        android:layout_marginTop="200dp"
         android:background="@color/material_dynamic_neutral40"
-        android:text="Global Ranking"
+        android:text="Start Adventure"
         android:textColor="@color/white" />
 
     <Button
-        android:id="@+id/mainmenu"
+        android:id="@+id/resumeadventuremenu"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:background="@color/material_dynamic_neutral40"
-        android:text="Main Menu"
+        android:text="Resume adventure"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/mystatisticsmenu"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="@color/material_dynamic_neutral40"
+        android:text="My statistics"
         android:textColor="@color/white" />
 
 </LinearLayout>
