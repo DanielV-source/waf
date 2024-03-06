@@ -26,7 +26,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SecondActivity" />
+        <activity android:name=".MyStatisticsActivity" />
+        <activity android:name=".InitMenuActivity" />
     </application>
 
 </manifest>

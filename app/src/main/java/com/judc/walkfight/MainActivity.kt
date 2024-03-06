@@ -116,7 +116,7 @@ class MainActivity : ComponentActivity() {
 
 
             // Older way in Walk & Fight using intents
-            val intent = Intent(this, SecondActivity::class.java)
+            val intent = Intent(this, InitMenuActivity::class.java)
             startActivity(intent)
 
             // Finish the current activity
