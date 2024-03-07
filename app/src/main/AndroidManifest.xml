@@ -28,6 +28,10 @@
 
         <activity android:name=".MyStatisticsActivity" />
         <activity android:name=".InitMenuActivity" />
+        <activity android:name=".WinnerWaypointActivity" />
+        <activity android:name=".LoseWaypointActivity" />
+        <activity android:name=".WinnerBossActivity" />
+        <activity android:name=".LoseBossActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/material_dynamic_neutral20"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:color/holo_red_light"
+            android:theme="?attr/actionBarTheme"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/logoText"
+            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_weight="0"
+            android:clickable="false"
+            android:drawableTint="#FFFFFF"
+            android:ems="10"
+            android:foregroundTint="@color/white"
+            android:gravity="center"
+            android:hyphenationFrequency="normal"
+            android:inputType="text"
+            android:singleLine="false"
+            android:text="Walk &amp; Fight (Logo here)"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white"
+            tools:visibility="visible" />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="242dp"
+        android:layout_height="112dp"
+        android:layout_marginTop="86dp"
+        android:layout_marginStart="86dp"
+        android:backgroundTint="#BD0D00">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewWinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_marginTop="20dp"
+                android:layout_row="0"
+                android:text="You lose"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="48sp" />
+        </GridLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textViewStadisticInformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50sp"
+        android:text="Statistical Information"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewCurrentFight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Current Boss Fight"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/tryfightagain"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="164dp"
+        android:background="@color/material_dynamic_neutral40"
+        android:text="Try Fight Again"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/mainmenu"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@color/material_dynamic_neutral40"
+        android:text="Main Menu"
+        android:textColor="@color/white" />
+
+</LinearLayout>
