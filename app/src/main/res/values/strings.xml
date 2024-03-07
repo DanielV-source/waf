@@ -1,13 +1,4 @@
 <resources>
     <string name="app_name">Walk &amp; Fight</string>
-    <string name="_1">1</string>
-    <string name="_2">2</string>
-    <string name="player_1">Player 1</string>
-    <string name="player_2">Player 2</string>
-    <string name="player_3">Player 3</string>
-    <string name="player_4">Player 4</string>
-    <string name="player_5">Player 5</string>
-    <string name="_890786_puntos">890786 puntos</string>
     <string name="ranking">RANKING</string>
-    <string name="_1345427_puntos">1345427_puntos</string>
 </resources>

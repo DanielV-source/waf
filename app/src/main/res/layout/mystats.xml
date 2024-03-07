@@ -6,7 +6,7 @@
     android:background="@color/material_dynamic_neutral20"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
     <TextView
         android:id="@+id/textView"
@@ -16,7 +16,7 @@
         android:text="Statistics"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="48sp"/>
+        android:textSize="48sp" />
 
     <TextView
         android:id="@+id/textView3"
