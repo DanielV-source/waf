@@ -36,7 +36,7 @@
             android:hyphenationFrequency="normal"
             android:inputType="text"
             android:singleLine="false"
-            android:text="Walk &amp; Fight (Logo here)"
+            android:text="@string/main_logoText"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white"
             tools:visibility="visible" />

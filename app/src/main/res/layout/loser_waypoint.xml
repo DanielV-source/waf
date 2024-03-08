@@ -33,7 +33,7 @@
             android:hyphenationFrequency="normal"
             android:inputType="text"
             android:singleLine="false"
-            android:text="Walk &amp; Fight (Logo here)"
+            android:text="@string/main_logoText"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white"
             tools:visibility="visible" />
@@ -51,13 +51,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textViewWinner"
+                android:id="@+id/loser"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_column="0"
                 android:layout_marginTop="20dp"
                 android:layout_row="0"
-                android:text="You lose"
+                android:text="@string/loser_waypoint_loser"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="48sp" />
@@ -66,20 +66,20 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/textViewStadisticInformation"
+        android:id="@+id/stadisticalInformation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50sp"
-        android:text="Statistical Information"
+        android:text="@string/loser_waypoint_stadisticalInformation"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textViewCurrentFight"
+        android:id="@+id/currentFight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Current Fight"
+        android:text="@string/loser_waypoint_currentFight"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp" />
@@ -91,7 +91,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="86dp"
         android:background="@color/material_dynamic_neutral40"
-        android:text="Next Waypoint"
+        android:text="@string/loser_waypoint_nextwaypoint"
         android:textColor="@color/white" />
 
     <Button
@@ -101,7 +101,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:background="@color/material_dynamic_neutral40"
-        android:text="Share with friends"
+        android:text="@string/loser_waypoint_sharewithfriends"
         android:textColor="@color/white" />
 
     <Button
@@ -111,7 +111,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:background="@color/material_dynamic_neutral40"
-        android:text="Main Menu"
+        android:text="@string/mainmenu"
         android:textColor="@color/white" />
 
 </LinearLayout>

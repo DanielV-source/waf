@@ -36,7 +36,7 @@
             android:hyphenationFrequency="normal"
             android:inputType="text"
             android:singleLine="false"
-            android:text="Walk &amp; Fight (Logo here)"
+            android:text="@string/main_logoText"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white"
             tools:visibility="visible" />
@@ -60,7 +60,7 @@
             android:gravity="center|center_vertical"
             android:inputType="text"
             android:singleLine="false"
-            android:text="Start your adventure now! Sign in for free!"
+            android:text="@string/main_startMsgText"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white"
             android:translationY="100dp" />
@@ -78,7 +78,7 @@
             android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:translationY="100dp" />
+            android:translationY="100dp"/>
 
     </LinearLayout>
 
