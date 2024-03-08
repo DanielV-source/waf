@@ -33,7 +33,7 @@
             android:hyphenationFrequency="normal"
             android:inputType="text"
             android:singleLine="false"
-            android:text="Walk &amp; Fight (Logo here)"
+            android:text="@string/main_logoText"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white"
             tools:visibility="visible" />
@@ -57,7 +57,7 @@
                 android:layout_column="0"
                 android:layout_marginTop="20dp"
                 android:layout_row="0"
-                android:text="You win!"
+                android:text="@string/winner_waypoint_winner"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="48sp" />
@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50sp"
-        android:text="Statistical Information"
+        android:text="@string/winner_boss_stadisticalInformation"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp" />
@@ -79,7 +79,7 @@
         android:id="@+id/textViewCurrentFight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Current Fight"
+        android:text="@string/winner_waypoint_currentFight"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp" />
@@ -91,7 +91,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="164dp"
         android:background="@color/material_dynamic_neutral40"
-        android:text="Next Waypoint"
+        android:text="@string/winner_waypoint_nextwaypoint"
         android:textColor="@color/white" />
 
     <Button
@@ -101,7 +101,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:background="@color/material_dynamic_neutral40"
-        android:text="Main Menu"
+        android:text="@string/mainmenu"
         android:textColor="@color/white" />
 
 </LinearLayout>

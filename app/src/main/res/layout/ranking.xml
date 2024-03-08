@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:fontFamily="cursive"
-            android:text="@string/ranking"
+            android:text="@string/ranking_rankingText"
             android:textColor="#FF0000"
             android:textSize="50sp"
             android:textStyle="bold"

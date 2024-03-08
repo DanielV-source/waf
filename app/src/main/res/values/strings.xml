@@ -1,4 +1,46 @@
 <resources>
     <string name="app_name">Walk &amp; Fight</string>
-    <string name="ranking">RANKING</string>
+
+    <string name="main_startMsgText">Start your adventure now! Sign in for free!</string>
+    <string name="main_logoText">Walk &amp; Fight (Logo here)</string>
+
+    <string name="initmenu_startadventuremenu">Start adventure</string>
+    <string name="initmenu_resumeadventuremenu">Resume adventure</string>
+    <string name="initmenu_mystatisticsmenu">My statistics</string>
+
+    <string name="ranking_rankingText">RANKING</string>
+    <string name="ranking_points">points</string>
+
+
+    <string name="winner_boss_winnerBoss">Congrats!</string>
+    <string name="winner_boss_stadisticalInformation">Statistical Information</string>
+    <string name="winner_boss_currentFight">Current Boss Fight</string>
+    <string name="winner_boss_sharewithfriends">Share with friends</string>
+
+    <string name="loser_boss_loser">Defeat</string>
+    <string name="loser_boss_stadisticalInformation">Statistical Information</string>
+    <string name="loser_boss_currentFight">Current Boss Fight</string>
+    <string name="loser_boss_sharewithfriends">Share with friends</string>
+    <string name="loser_boss_nextwaypoint">Next Waypoint</string>
+    <string name="loser_boss_tryfightagain">Try Fight Again</string>
+
+    <string name="winner_waypoint_winner">Victory!</string>
+    <string name="winner_waypoint_stadisticInformation">Statistical Information</string>
+    <string name="winner_waypoint_currentFight">Current Fight</string>
+    <string name="winner_waypoint_nextwaypoint">Next Waypoint</string>
+
+    <string name="loser_waypoint_loser">Defeat</string>
+    <string name="loser_waypoint_stadisticalInformation">Statistical Information</string>
+    <string name="loser_waypoint_currentFight">Current Fight</string>
+    <string name="loser_waypoint_sharewithfriends">Share with friends</string>
+    <string name="loser_waypoint_nextwaypoint">Next Waypoint</string>
+
+
+    <string name="mystats_stadistics">Statistics</string>
+    <string name="mystats_stadisticalInformation">Statistical Information</string>
+    <string name="mystats_globalrankingmenu">Global Ranking</string>
+
+
+    <string name="mainmenu">Main Menu</string>
+
 </resources>
