@@ -94,6 +94,11 @@ class MainActivity : ComponentActivity() {
         signInButton.setOnClickListener {
             signIn()
         }
+
+        val skipSignInButton: Button = findViewById(R.id.skip_signin)
+        skipSignInButton.setOnClickListener {
+            accessApp()
+        }
     }
 
     /**
