@@ -45,6 +45,9 @@ class MainActivity : ComponentActivity() {
             account?.idToken?.let { firebaseAuthWithGoogle(it) }
         } catch (e: ApiException) {
             Log.w(TAG, "Google sign in failed", e)
+            Toast.makeText(this,
+                "Google sign in failed, please contact an administrator",
+                Toast.LENGTH_LONG).show()
         }
     }
 
@@ -68,6 +71,10 @@ class MainActivity : ComponentActivity() {
                 FirebaseAuth.getInstance().signOut()
             }
         } else {
+            // If sign in fails, display an error message
+            Toast.makeText(this,
+                "Error login with Google, please contact an administrator",
+                Toast.LENGTH_LONG).show()
             FirebaseAuth.getInstance().signOut()
         }
     }
@@ -97,7 +104,7 @@ class MainActivity : ComponentActivity() {
 
         val skipSignInButton: Button = findViewById(R.id.skip_signin)
         skipSignInButton.setOnClickListener {
-            accessApp()
+            skipAccessApp()
         }
     }
 
@@ -127,6 +134,21 @@ class MainActivity : ComponentActivity() {
             // Finish the current activity
             finish();
         }
+    }
+
+    /**
+     * Go to next screen skipping sign in
+     */
+    private fun skipAccessApp() {
+        // TODO: pass the user variable to other screens
+
+
+        // Older way in Walk & Fight using intents
+        val intent = Intent(this, InitMenuActivity::class.java)
+        startActivity(intent)
+
+        // Finish the current activity
+        finish();
     }
 
 

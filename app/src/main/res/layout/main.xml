@@ -88,11 +88,11 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="vertical"
-        android:translationY="70dp">
+        android:translationY="0dp">
         <Button
         android:id="@+id/skip_signin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:text="@string/main_skip_signin"
         android:background="@color/material_dynamic_neutral40"
