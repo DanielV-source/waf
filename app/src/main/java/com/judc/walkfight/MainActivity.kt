@@ -161,6 +161,9 @@ class MainActivity : ComponentActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
+                    val email = FirebaseAuth.getInstance().currentUser?.email
+                    if(email != null)
+                        mAuth.createUserWithEmailAndPassword(email, "temp")
                     val user = FirebaseAuth.getInstance().currentUser
                     if (user != null) {
                         user.displayName?.let { Log.w("Warning", it) }
