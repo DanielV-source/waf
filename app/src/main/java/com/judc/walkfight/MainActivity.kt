@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
         val task = GoogleSignIn.getSignedInAccountFromIntent(data)
         try {
             val account = task.getResult(ApiException::class.java)
-            account?.idToken?.let { firebaseAuthWithGoogle(it) }
+            account?.idToken?.let { firebaseAuthWithGoogle(it, account) }
         } catch (e: ApiException) {
             Log.w(TAG, "Google sign in failed", e)
             Toast.makeText(this,
@@ -155,15 +155,17 @@ class MainActivity : ComponentActivity() {
     /**
      * Sign in Firebase with Google
      */
-    private fun firebaseAuthWithGoogle(idToken: String) {
+    private fun firebaseAuthWithGoogle(idToken: String, account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
+        val email = account.email
+        if(email != null) {
+            // Create an account in Firebase
+            mAuth.createUserWithEmailAndPassword(email, "walkandfightaccount")
+        }
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    val email = FirebaseAuth.getInstance().currentUser?.email
-                    if(email != null)
-                        mAuth.createUserWithEmailAndPassword(email, "temp")
                     val user = FirebaseAuth.getInstance().currentUser
                     if (user != null) {
                         user.displayName?.let { Log.w("Warning", it) }
