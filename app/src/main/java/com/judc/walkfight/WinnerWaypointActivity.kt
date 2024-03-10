@@ -16,5 +16,11 @@ class WinnerWaypointActivity : ComponentActivity() {
             startActivity(intent)
         }
 
+        val nextWaypointButton: Button = findViewById(R.id.nextwaypoint)
+        nextWaypointButton.setOnClickListener {
+            val intent = Intent(this@WinnerWaypointActivity, OSMBossActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

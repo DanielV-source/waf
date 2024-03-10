@@ -16,5 +16,11 @@ class LoseBossActivity : ComponentActivity() {
             startActivity(intent)
         }
 
+        val nextWaypointButton: Button = findViewById(R.id.tryfightagain)
+        nextWaypointButton.setOnClickListener {
+            val intent = Intent(this@LoseBossActivity, OSMBossActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

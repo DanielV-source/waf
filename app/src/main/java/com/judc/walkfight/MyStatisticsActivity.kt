@@ -15,15 +15,15 @@ class MyStatisticsActivity : ComponentActivity() {
 
         val globalRankingButton: Button = findViewById(R.id.globalrankingmenu)
         globalRankingButton.setOnClickListener {
-            val intentRankingActivity = Intent(this@MyStatisticsActivity, Ranking::class.java)
-            startActivity(intentRankingActivity)
+            val intent = Intent(this@MyStatisticsActivity, Ranking::class.java)
+            startActivity(intent)
             Toast.makeText(this, "Going to Ranking", Toast.LENGTH_LONG).show()
             Log.d(MyStatisticsActivity.TAG, "My Statistics Activity: Intent load Ranking")
         }
         val myStatisticsButton: Button = findViewById(R.id.mainmenu)
         myStatisticsButton.setOnClickListener {
-            val intentMyStatisticsActivity = Intent(this@MyStatisticsActivity, InitMenuActivity::class.java)
-            startActivity(intentMyStatisticsActivity)
+            val intent = Intent(this@MyStatisticsActivity, InitMenuActivity::class.java)
+            startActivity(intent)
             Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()
             Log.d(MyStatisticsActivity.TAG, "My Statistics Activity: Intent load Init Menu Activity")
         }
