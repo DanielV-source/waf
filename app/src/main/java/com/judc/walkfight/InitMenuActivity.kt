@@ -20,6 +20,24 @@ class InitMenuActivity : ComponentActivity() {
             Log.d(InitMenuActivity.TAG, "Init Menu Activity: Intent load MyStatisticsActivity")
         }
 
+
+        val startAdventureButton: Button = findViewById(R.id.startadventuremenu)
+        startAdventureButton.setOnClickListener {
+            val intent = Intent(this@InitMenuActivity,OSMWaypointActivity::class.java)
+            startActivity(intent)
+            Toast.makeText(this, "Going to OSMWaypointActivity", Toast.LENGTH_LONG).show()
+            Log.d(InitMenuActivity.TAG, "Init Menu Activity: Intent load OSMWaypointActivity")
+        }
+
+
+        val resumeAdventureButton: Button = findViewById(R.id.resumeadventuremenu)
+        resumeAdventureButton.setOnClickListener {
+            val intent = Intent(this@InitMenuActivity,OSMBossActivity::class.java)
+            startActivity(intent)
+            Toast.makeText(this, "Going to OSMBossActivity", Toast.LENGTH_LONG).show()
+            Log.d(InitMenuActivity.TAG, "Init Menu Activity: Intent load OSMBossActivity")
+        }
+
     }
 
     companion object {

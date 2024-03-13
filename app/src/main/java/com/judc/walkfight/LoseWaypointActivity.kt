@@ -16,5 +16,11 @@ class LoseWaypointActivity : ComponentActivity() {
             startActivity(intent)
         }
 
+        val nextWaypointButton: Button = findViewById(R.id.nextwaypoint)
+        nextWaypointButton.setOnClickListener {
+            val intent = Intent(this@LoseWaypointActivity, OSMWaypointActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }
