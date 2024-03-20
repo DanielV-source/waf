@@ -2,7 +2,9 @@ package com.judc.walkfight
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 
 class WinnerWaypointActivity : ComponentActivity() {
@@ -14,13 +16,21 @@ class WinnerWaypointActivity : ComponentActivity() {
         myStatisticsButton.setOnClickListener {
             val intent = Intent(this@WinnerWaypointActivity, InitMenuActivity::class.java)
             startActivity(intent)
+            Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()
+            Log.d(WinnerWaypointActivity.TAG, "My Winner Waypoint Activity: Intent load InitMenuActivity")
         }
 
         val nextWaypointButton: Button = findViewById(R.id.nextwaypoint)
         nextWaypointButton.setOnClickListener {
             val intent = Intent(this@WinnerWaypointActivity, OSMBossActivity::class.java)
             startActivity(intent)
+            Toast.makeText(this, "Going to OSMBossActivity", Toast.LENGTH_LONG).show()
+            Log.d(WinnerWaypointActivity.TAG, "My Winner Waypoint Activity: Intent load OSMBossActivity")
         }
 
+    }
+
+    companion object {
+        private const val TAG = "WinnerWaypointActivity"
     }
 }
