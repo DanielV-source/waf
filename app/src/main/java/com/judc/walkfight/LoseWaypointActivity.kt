@@ -24,10 +24,9 @@ class LoseWaypointActivity : ComponentActivity() {
         nextWaypointButton.setOnClickListener {
             val intent = Intent(this@LoseWaypointActivity, OSMWaypointActivity::class.java)
             startActivity(intent)
-            Toast.makeText(this, "Going to OSMBossActivity", Toast.LENGTH_LONG).show()
-            Log.d(LoseWaypointActivity.TAG, "My Lose Waypoint Activity: Intent load InitMenuActivity")
+            Toast.makeText(this, "Going to OSMWaypointActivity", Toast.LENGTH_LONG).show()
+            Log.d(LoseWaypointActivity.TAG, "My Lose Waypoint Activity: Intent load OSMWaypointActivity")
         }
-
     }
 
     companion object {
