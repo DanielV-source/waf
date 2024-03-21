@@ -12,8 +12,8 @@ class LoseWaypointActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.loser_waypoint)
-        val myStatisticsButton: Button = findViewById(R.id.mainmenu)
-        myStatisticsButton.setOnClickListener {
+        val mainMenuButton: Button = findViewById(R.id.main_menu)
+        mainMenuButton.setOnClickListener {
             val intent = Intent(this@LoseWaypointActivity, InitMenuActivity::class.java)
             startActivity(intent)
             Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()

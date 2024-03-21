@@ -12,7 +12,12 @@ class WinnerBossActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.winner_boss)
-        val myStatisticsButton: Button = findViewById(R.id.mainmenu)
+        val shareWithFriends: Button = findViewById(R.id.share_with_friends)
+        shareWithFriends.setOnClickListener {
+            Toast.makeText(this, "Sharing with friends", Toast.LENGTH_LONG).show()
+            Log.d(WinnerBossActivity.TAG, "My Winner Boss Activity: Sharing with friends")
+        }
+        val myStatisticsButton: Button = findViewById(R.id.main_menu)
         myStatisticsButton.setOnClickListener {
             val intent = Intent(this@WinnerBossActivity, InitMenuActivity::class.java)
             startActivity(intent)

@@ -20,7 +20,7 @@ class MyStatisticsActivity : ComponentActivity() {
             Toast.makeText(this, "Going to Ranking", Toast.LENGTH_LONG).show()
             Log.d(MyStatisticsActivity.TAG, "My Statistics Activity: Intent load Ranking")
         }
-        val myStatisticsButton: Button = findViewById(R.id.mainmenu)
+        val myStatisticsButton: Button = findViewById(R.id.lose_fight)
         myStatisticsButton.setOnClickListener {
             val intent = Intent(this@MyStatisticsActivity, InitMenuActivity::class.java)
             startActivity(intent)

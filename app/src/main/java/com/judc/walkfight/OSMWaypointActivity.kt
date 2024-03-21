@@ -35,20 +35,13 @@ class OSMWaypointActivity : ComponentActivity() {
             currentLocationMarker.position = GeoPoint(location.latitude, location.longitude)
         }
 
-        val winChallengeButton: Button = findViewById(R.id.winchallenge)
-        winChallengeButton.setOnClickListener {
-            val intent = Intent(this@OSMWaypointActivity, WinnerWaypointActivity::class.java)
+        val fightButton: Button = findViewById(R.id.fight)
+        fightButton.setOnClickListener {
+            val intent = Intent(this@OSMWaypointActivity, FightActivity::class.java)
             startActivity(intent)
-            Toast.makeText(this, "Going to WinnerWaypointActivity", Toast.LENGTH_LONG).show()
-            Log.d(OSMWaypointActivity.TAG, "My OSM Waypoint Activity: Intent load WinnerWaypointActivity")
-        }
-
-        val loseChallengeButton: Button = findViewById(R.id.losechallenge)
-        loseChallengeButton.setOnClickListener {
-            val intent = Intent(this@OSMWaypointActivity, LoseWaypointActivity::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Going to LoseWaypointActivity", Toast.LENGTH_LONG).show()
-            Log.d(OSMWaypointActivity.TAG, "My OSM Waypoint Activity: Intent load LoseWaypointActivity")
+            Toast.makeText(this, "Going to FightActivity", Toast.LENGTH_LONG).show()
+            Log.d(OSMWaypointActivity.TAG, "My OSM Boss Activity: Intent load FightActivity")
+            finish();
         }
     }
 

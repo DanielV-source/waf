@@ -12,8 +12,8 @@ class LoseBossActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.loser_boss)
-        val myStatisticsButton: Button = findViewById(R.id.mainmenu)
-        myStatisticsButton.setOnClickListener {
+        val mainMenuButton: Button = findViewById(R.id.main_menu)
+        mainMenuButton.setOnClickListener {
             val intent = Intent(this@LoseBossActivity, InitMenuActivity::class.java)
             startActivity(intent)
             Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()

@@ -85,7 +85,7 @@
         android:textSize="24sp" />
 
     <Button
-        android:id="@+id/sharewithfriends"
+        android:id="@+id/share_with_friends"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -95,7 +95,7 @@
         android:textColor="@color/white" />
 
     <Button
-        android:id="@+id/mainmenu"
+        android:id="@+id/main_menu"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
