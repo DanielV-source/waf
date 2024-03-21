@@ -1,56 +1,188 @@
 package com.judc.walkfight
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var mAuth: FirebaseAuth
 
-        val layout = LinearLayout(this)
-        layout.orientation = LinearLayout.VERTICAL
-        layout.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
-        )
-
-        val emailEditText = EditText(this)
-        emailEditText.hint = "Email"
-        layout.addView(emailEditText)
-
-        val passwordEditText = EditText(this)
-        passwordEditText.hint = "Password"
-        passwordEditText.inputType =
-            android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
-        layout.addView(passwordEditText)
-
-        val loginButton = Button(this)
-        loginButton.text = "Login"
-        loginButton.setOnClickListener {
-            val email = emailEditText.text.toString()
-            val password = passwordEditText.text.toString()
-            performLogin(email, password)
+    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            handleSignInResult(data)
         }
-        layout.addView(loginButton)
-
-        val openSecondActivityButton = Button(this)
-        openSecondActivityButton.text = "Open Second Activity"
-        openSecondActivityButton.setOnClickListener {
-            val intent = Intent(this, SecondActivity::class.java)
-            startActivity(intent)
-        }
-        layout.addView(openSecondActivityButton)
-
-        setContentView(layout)
     }
 
-    private fun performLogin(email: String, password: String) {
+    /**
+     * This function checks if Google and Firebase sign in ends with no errors
+     */
+    private fun handleSignInResult(data: Intent?) {
+        val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+        try {
+            val account = task.getResult(ApiException::class.java)
+            account?.idToken?.let { firebaseAuthWithGoogle(it, account) }
+        } catch (e: ApiException) {
+            Log.w(TAG, "Google sign in failed", e)
+            Toast.makeText(this,
+                "Google sign in failed, please contact an administrator",
+                Toast.LENGTH_LONG).show()
+        }
+    }
 
-        Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
+    /**
+     * Sign in function from Google and Firebase services
+     */
+    private fun signIn() {
+        val signInIntent = googleSignInClient.signInIntent
+        launcher.launch(signInIntent)
+    }
+
+    /**
+     * Sign out function from Google and Firebase services
+     */
+    private fun signOut() {
+        val googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this)
+        if (googleSignInAccount != null) {
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
+            val googleSignInClient = GoogleSignIn.getClient(this, gso)
+            googleSignInClient.signOut().addOnCompleteListener(this) {
+                FirebaseAuth.getInstance().signOut()
+            }
+        } else {
+            // If sign in fails, display an error message
+            Toast.makeText(this,
+                "Error login with Google, please contact an administrator",
+                Toast.LENGTH_LONG).show()
+            FirebaseAuth.getInstance().signOut()
+        }
+    }
+
+    /**
+     * This is the first function called in this activity. Creates the default layout
+     * and display the button for Google Sign-In.
+     */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.main)
+        mAuth = FirebaseAuth.getInstance()
+
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        val signInButton: SignInButton = findViewById(R.id.sign_in_button)
+        signInButton.setSize(SignInButton.SIZE_STANDARD)
+        signInButton.setOnClickListener {
+            signIn()
+        }
+
+        val skipSignInButton: Button = findViewById(R.id.skip_signin)
+        skipSignInButton.setOnClickListener {
+            skipAccessApp()
+        }
+    }
+
+    /**
+     * This function is executed when activity is loaded
+     */
+    override fun onStart() {
+        super.onStart()
+
+        // Check if user is signed in (non-null) and go to the next screen
+        accessApp()
+    }
+
+    /**
+     * Go to next screen if user is not null
+     */
+    private fun accessApp() {
+        val user = mAuth.currentUser
+        if (user != null) {
+            // TODO: pass the user variable to other screens
+
+            val intent = Intent(this, InitMenuActivity::class.java)
+            startActivity(intent)
+            Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()
+            Log.d(MainActivity.TAG, "My Main Activity: Intent load InitMenuActivity")
+            // Finish the current activity
+            finish();
+        }
+    }
+
+    /**
+     * Go to next screen skipping sign in
+     */
+    private fun skipAccessApp() {
+        // TODO: pass the user variable to other screens
+
+
+        // Older way in Walk & Fight using intents
+        val intent = Intent(this, InitMenuActivity::class.java)
+        startActivity(intent)
+        Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()
+        Log.d(MainActivity.TAG, "My Main Activity: Intent load InitMenuActivity")
+
+        // Finish the current activity
+        finish();
+    }
+
+
+    /**
+     * Sign in Firebase with Google
+     */
+    private fun firebaseAuthWithGoogle(idToken: String, account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        val email = account.email
+        if(email != null) {
+            // Create an account in Firebase
+            mAuth.createUserWithEmailAndPassword(email, "walkandfightaccount")
+        }
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    val user = FirebaseAuth.getInstance().currentUser
+                    if (user != null) {
+                        user.displayName?.let { Log.w("Warning", it) }
+                    }
+                    // TODO: pass the user variable to other screens
+                    accessApp()
+                } else {
+                    // If sign in fails, display an error message
+                    Toast.makeText(this,
+                        "Error login with Firebase, please contact an administrator",
+                        Toast.LENGTH_LONG).show()
+                }
+            }
+    }
+
+    companion object {
+        private const val TAG = "GoogleActivity"
     }
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:visibility="visible">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:color/holo_red_light"
+            android:theme="?attr/actionBarTheme"
+            android:visibility="visible"
+            android:navigationIcon="@android:drawable/ic_menu_sort_by_size"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/logoText"
+            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_weight="0"
+            android:clickable="false"
+            android:drawableTint="#FFFFFF"
+            android:ems="10"
+            android:foregroundTint="@color/white"
+            android:gravity="center"
+            android:hyphenationFrequency="normal"
+            android:inputType="text"
+            android:singleLine="false"
+            android:text="@string/main_logoText"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white"
+            tools:visibility="visible" />
+    </RelativeLayout>
+
+</LinearLayout>
