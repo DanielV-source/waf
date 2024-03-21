@@ -126,11 +126,10 @@ class MainActivity : ComponentActivity() {
         if (user != null) {
             // TODO: pass the user variable to other screens
 
-
-            // Older way in Walk & Fight using intents
             val intent = Intent(this, InitMenuActivity::class.java)
             startActivity(intent)
-
+            Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()
+            Log.d(MainActivity.TAG, "My Main Activity: Intent load InitMenuActivity")
             // Finish the current activity
             finish();
         }
@@ -146,6 +145,8 @@ class MainActivity : ComponentActivity() {
         // Older way in Walk & Fight using intents
         val intent = Intent(this, InitMenuActivity::class.java)
         startActivity(intent)
+        Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()
+        Log.d(MainActivity.TAG, "My Main Activity: Intent load InitMenuActivity")
 
         // Finish the current activity
         finish();

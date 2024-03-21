@@ -95,7 +95,17 @@
         android:textColor="@color/white" />
 
     <Button
-        android:id="@+id/mainmenu"
+        android:id="@+id/share_with_friends"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@color/material_dynamic_neutral40"
+        android:text="@string/loser_waypoint_sharewithfriends"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/main_menu"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

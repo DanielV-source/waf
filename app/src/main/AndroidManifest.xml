@@ -32,6 +32,8 @@
         <activity android:name=".InitMenuActivity" />
         <activity android:name=".WinnerWaypointActivity" />
         <activity android:name=".LoseWaypointActivity" />
+        <activity android:name=".FightBossActivity" />
+        <activity android:name=".FightActivity" />
         <activity android:name=".WinnerBossActivity" />
         <activity android:name=".LoseBossActivity" />
         <activity android:name=".Ranking" />

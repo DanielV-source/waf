@@ -12,12 +12,18 @@ class WinnerWaypointActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.winner_waypoint)
-        val myStatisticsButton: Button = findViewById(R.id.mainmenu)
+        val myStatisticsButton: Button = findViewById(R.id.main_menu)
         myStatisticsButton.setOnClickListener {
             val intent = Intent(this@WinnerWaypointActivity, InitMenuActivity::class.java)
             startActivity(intent)
             Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()
             Log.d(WinnerWaypointActivity.TAG, "My Winner Waypoint Activity: Intent load InitMenuActivity")
+        }
+
+        val shareWithFriends: Button = findViewById(R.id.share_with_friends)
+        shareWithFriends.setOnClickListener {
+            Toast.makeText(this, "Sharing with friends", Toast.LENGTH_LONG).show()
+            Log.d(WinnerWaypointActivity.TAG, "My Winner Waypoint Activity: Sharing with friends")
         }
 
         val nextWaypointButton: Button = findViewById(R.id.nextwaypoint)

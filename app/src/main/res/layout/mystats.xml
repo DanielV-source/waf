@@ -39,7 +39,7 @@
         android:textColor="@color/white" />
 
     <Button
-        android:id="@+id/mainmenu"
+        android:id="@+id/lose_fight"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
