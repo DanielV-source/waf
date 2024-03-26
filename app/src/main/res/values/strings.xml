@@ -51,4 +51,7 @@
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
 
+    <string name="google_sign_in_failed">Error login with Google, please contact an administrator</string>
+    <string name="firebase_error">Error login with Firebase, please contact an administrator</string>
+
 </resources>

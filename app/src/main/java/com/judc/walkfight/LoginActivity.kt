@@ -46,9 +46,9 @@ class LoginActivity : AppCompatActivity() {
             val account = task.getResult(ApiException::class.java)
             account?.idToken?.let { firebaseAuthWithGoogle(it, account) }
         } catch (e: ApiException) {
-            Log.w(TAG, "Google sign in failed", e)
+            Log.w(TAG, "@string/google_sign_in_failed", e)
             Toast.makeText(this,
-                "Google sign in failed, please contact an administrator",
+                "@string/google_sign_in_failed",
                 Toast.LENGTH_LONG).show()
         }
     }
@@ -75,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
         } else {
             // If sign in fails, display an error message
             Toast.makeText(this,
-                "Error login with Google, please contact an administrator",
+                "@string/google_sign_in_failed",
                 Toast.LENGTH_LONG).show()
             FirebaseAuth.getInstance().signOut()
         }
@@ -141,8 +141,8 @@ class LoginActivity : AppCompatActivity() {
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()
-            Log.d(TAG, "My Main Activity: Intent load InitMenuActivity")
+            Toast.makeText(this, "Going to MainActivity", Toast.LENGTH_LONG).show()
+            Log.d(TAG, "My Login Activity: Intent load MainActivity")
             // Finish the current activity
             finish()
         }
@@ -156,8 +156,8 @@ class LoginActivity : AppCompatActivity() {
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()
-        Log.d(TAG, "My Main Activity: Intent load InitMenuActivity")
+        Toast.makeText(this, "Going to MainActivity", Toast.LENGTH_LONG).show()
+        Log.d(TAG, "My Login Activity: Intent load MainActivity")
 
         // Finish the current activity
         finish()
@@ -172,7 +172,7 @@ class LoginActivity : AppCompatActivity() {
         val email = account.email
         if(email != null) {
             // Create an account in Firebase
-            mAuth.createUserWithEmailAndPassword(email, "walkandfightaccount")
+            mAuth.createUserWithEmailAndPassword(email, "@id/default_password")
         }
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
@@ -187,13 +187,13 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     // If sign in fails, display an error message
                     Toast.makeText(this,
-                        "Error login with Firebase, please contact an administrator",
+                        "@string/firebase_error",
                         Toast.LENGTH_LONG).show()
                 }
             }
     }
 
     companion object {
-        private const val TAG = "GoogleActivity"
+        private const val TAG = "LoginActivity"
     }
 }
