@@ -1,188 +1,104 @@
 package com.judc.walkfight
 
-import android.app.Activity
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.result.contract.ActivityResultContracts
+import android.view.MenuItem
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.SignInButton
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
+import com.google.android.material.navigation.NavigationView
+import com.judc.walkfight.fragments.MainFragment
+import com.judc.walkfight.fragments.ProfileFragment
 
-class MainActivity : ComponentActivity() {
-    private lateinit var googleSignInClient: GoogleSignInClient
-    private lateinit var mAuth: FirebaseAuth
+class MainActivity : AppCompatActivity() {
 
-    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val data: Intent? = result.data
-            handleSignInResult(data)
-        }
-    }
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
 
-    /**
-     * This function checks if Google and Firebase sign in ends with no errors
-     */
-    private fun handleSignInResult(data: Intent?) {
-        val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-        try {
-            val account = task.getResult(ApiException::class.java)
-            account?.idToken?.let { firebaseAuthWithGoogle(it, account) }
-        } catch (e: ApiException) {
-            Log.w(TAG, "Google sign in failed", e)
-            Toast.makeText(this,
-                "Google sign in failed, please contact an administrator",
-                Toast.LENGTH_LONG).show()
-        }
-    }
-
-    /**
-     * Sign in function from Google and Firebase services
-     */
-    private fun signIn() {
-        val signInIntent = googleSignInClient.signInIntent
-        launcher.launch(signInIntent)
-    }
-
-    /**
-     * Sign out function from Google and Firebase services
-     */
-    private fun signOut() {
-        val googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this)
-        if (googleSignInAccount != null) {
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
-            val googleSignInClient = GoogleSignIn.getClient(this, gso)
-            googleSignInClient.signOut().addOnCompleteListener(this) {
-                FirebaseAuth.getInstance().signOut()
-            }
-        } else {
-            // If sign in fails, display an error message
-            Toast.makeText(this,
-                "Error login with Google, please contact an administrator",
-                Toast.LENGTH_LONG).show()
-            FirebaseAuth.getInstance().signOut()
-        }
-    }
-
-    /**
-     * This is the first function called in this activity. Creates the default layout
-     * and display the button for Google Sign-In.
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main)
-        mAuth = FirebaseAuth.getInstance()
 
-
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        val signInButton: SignInButton = findViewById(R.id.sign_in_button)
-        signInButton.setSize(SignInButton.SIZE_STANDARD)
-        signInButton.setOnClickListener {
-            signIn()
-        }
-
-        val skipSignInButton: Button = findViewById(R.id.skip_signin)
-        skipSignInButton.setOnClickListener {
-            skipAccessApp()
-        }
-    }
-
-    /**
-     * This function is executed when activity is loaded
-     */
-    override fun onStart() {
-        super.onStart()
-
-        // Check if user is signed in (non-null) and go to the next screen
-        accessApp()
-    }
-
-    /**
-     * Go to next screen if user is not null
-     */
-    private fun accessApp() {
-        val user = mAuth.currentUser
-        if (user != null) {
-            // TODO: pass the user variable to other screens
-
-            val intent = Intent(this, InitMenuActivity::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()
-            Log.d(MainActivity.TAG, "My Main Activity: Intent load InitMenuActivity")
-            // Finish the current activity
-            finish();
-        }
-    }
-
-    /**
-     * Go to next screen skipping sign in
-     */
-    private fun skipAccessApp() {
-        // TODO: pass the user variable to other screens
-
-
-        // Older way in Walk & Fight using intents
-        val intent = Intent(this, InitMenuActivity::class.java)
-        startActivity(intent)
-        Toast.makeText(this, "Going to InitMenuActivity", Toast.LENGTH_LONG).show()
-        Log.d(MainActivity.TAG, "My Main Activity: Intent load InitMenuActivity")
-
-        // Finish the current activity
-        finish();
-    }
-
-
-    /**
-     * Sign in Firebase with Google
-     */
-    private fun firebaseAuthWithGoogle(idToken: String, account: GoogleSignInAccount) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        val email = account.email
-        if(email != null) {
-            // Create an account in Firebase
-            mAuth.createUserWithEmailAndPassword(email, "walkandfightaccount")
-        }
-        mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val user = FirebaseAuth.getInstance().currentUser
-                    if (user != null) {
-                        user.displayName?.let { Log.w("Warning", it) }
-                    }
-                    // TODO: pass the user variable to other screens
-                    accessApp()
+        // Detach first visible fragment when back button is pressed
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (supportFragmentManager.backStackEntryCount > 1) {
+                    supportFragmentManager.popBackStack()
                 } else {
-                    // If sign in fails, display an error message
-                    Toast.makeText(this,
-                        "Error login with Firebase, please contact an administrator",
-                        Toast.LENGTH_LONG).show()
+                    showExitConfirmationDialog()
                 }
             }
+        }
+
+        onBackPressedDispatcher.addCallback(this, callback)
+
+        setContentView(R.layout.initmenu)
+        drawerLayout = findViewById(R.id.drawer_layout)
+
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        toolbar.title = ""
+        setSupportActionBar(toolbar)
+
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        toggle.drawerArrowDrawable.color = ContextCompat.getColor(this, R.color.white)
+
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
+        toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
+
+        // Load initial screen layout
+        replaceFragment(MainFragment())
+
+        navView = findViewById(R.id.nav_view)
+        val menuItem: MenuItem = navView.menu.findItem(R.id.nav_home)
+        if(menuItem.itemId == R.id.nav_home && supportFragmentManager.fragments.size > 0) {
+            if(supportFragmentManager.getBackStackEntryAt(0).name == "MainFragment")
+                menuItem.setVisible(false)
+        }
+        navView.setNavigationItemSelectedListener { mItem ->
+            when (mItem.itemId) {
+                R.id.nav_home -> {
+                    replaceFragment(MainFragment())
+                    true
+                }
+
+                R.id.nav_profile -> {
+                    replaceFragment(ProfileFragment())
+                    true
+                }
+                else -> false
+            }.also {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            }
+        }
+    }
+
+    @SuppressLint("SuspiciousIndentation")
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, fragment)
+            transaction.addToBackStack(fragment.tag)
+            transaction.commit()
+    }
+
+    private fun showExitConfirmationDialog() {
+        AlertDialog.Builder(this)
+            .setMessage(getString(R.string.exit_confirmation))
+            .setPositiveButton(getString(R.string.yes)) { _, _ -> finish() }
+            .setNegativeButton(getString(R.string.no), null)
+            .show()
     }
 
     companion object {
-        private const val TAG = "GoogleActivity"
+        private const val TAG = "MainActivity"
     }
 }
