@@ -4,64 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/material_dynamic_neutral20"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp">
+    <Button
+        android:id="@+id/win_fight"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:background="@color/material_dynamic_neutral40"
+        android:text="Win fight"
+        android:textColor="@color/white" />
 
-        <Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@android:color/holo_red_light"
-            android:theme="?attr/actionBarTheme"
-            android:visibility="visible"
-            tools:visibility="visible" />
-
-        <EditText
-            android:id="@+id/logoText"
-            style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_weight="0"
-            android:clickable="false"
-            android:drawableTint="#FFFFFF"
-            android:ems="10"
-            android:foregroundTint="@color/white"
-            android:gravity="center"
-            android:hyphenationFrequency="normal"
-            android:inputType="text"
-            android:singleLine="false"
-            android:text="@string/main_logoText"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/white"
-            tools:visibility="visible" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/win_fight"
-            android:layout_width="162dp"
-            android:layout_height="wrap_content"
-            android:background="@color/material_dynamic_neutral40"
-            android:text="Win fight"
-            android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/lose_fight"
-            android:layout_width="162dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:background="@color/material_dynamic_neutral40"
-            android:text="Lose fight"
-            android:textColor="@color/white" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/lose_fight"
+        android:layout_width="162dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@color/material_dynamic_neutral40"
+        android:text="Lose fight"
+        android:textColor="@color/white" />
 
 </LinearLayout>

@@ -6,8 +6,6 @@
     android:background="@color/material_dynamic_neutral20"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar" />
-
     <TextView
         android:id="@+id/stadistics"
         android:layout_width="match_parent"
@@ -39,7 +37,7 @@
         android:textColor="@color/white" />
 
     <Button
-        android:id="@+id/lose_fight"
+        android:id="@+id/main_menu"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

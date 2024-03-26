@@ -2,7 +2,7 @@
     <string name="app_name">Walk &amp; Fight</string>
 
     <string name="main_startMsgText">Start your adventure now! Sign in for free!</string>
-    <string name="main_logoText">Walk &amp; Fight (Logo here)</string>
+    <string name="main_logoText">Walk &amp; Fight</string>
     <string name="main_skip_signin">Skip sign in</string>
 
     <string name="initmenu_startadventuremenu">Start adventure</string>
@@ -41,6 +41,14 @@
     <string name="mystats_globalrankingmenu">Global Ranking</string>
 
 
+    <string name="exit_confirmation">Are you sure to exit?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="mainmenu">Main Menu</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 
 </resources>
