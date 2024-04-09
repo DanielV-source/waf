@@ -15,6 +15,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import com.judc.walkfight.fragments.MainFragment
 import com.judc.walkfight.fragments.ProfileFragment
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
+import com.judc.walkfight.coroutines.fetchDirections
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,7 +50,12 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -60,8 +69,8 @@ class MainActivity : AppCompatActivity() {
 
         navView = findViewById(R.id.nav_view)
         val menuItem: MenuItem = navView.menu.findItem(R.id.nav_home)
-        if(menuItem.itemId == R.id.nav_home && supportFragmentManager.fragments.size > 0) {
-            if(supportFragmentManager.getBackStackEntryAt(0).name == "MainFragment")
+        if (menuItem.itemId == R.id.nav_home && supportFragmentManager.fragments.size > 0) {
+            if (supportFragmentManager.getBackStackEntryAt(0).name == "MainFragment")
                 menuItem.setVisible(false)
         }
         navView.setNavigationItemSelectedListener { mItem ->
@@ -80,14 +89,34 @@ class MainActivity : AppCompatActivity() {
                 drawerLayout.closeDrawer(GravityCompat.START)
             }
         }
+
+        val sharedPreferences = getSharedPreferences("preferences", Context.MODE_PRIVATE)
+        val jsonObject = JsonFileReader.readJsonObject(this, R.raw.coordinates)
+        var coordinates: List<String> = emptyList()
+
+        if (jsonObject != null) {
+            val pathA = jsonObject.getJSONObject("path_a")
+            val start = pathA.getString("start")
+            val end = pathA.getString("end")
+            coordinates = listOf(start, end)
+            println("Reading from SharedPreferences: $coordinates")
+            sharedPreferences.edit().putString("coordinate", coordinates.joinToString(",")).apply()
+        }
+
+        if (coordinates.size >= 2) {
+            fetchDirections(getString(R.string.ors_api_key), coordinates[0], coordinates[1])
+        }
+
+        val value = sharedPreferences.getString("coordinate", "default value")
+        Toast.makeText(this, value, Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SuspiciousIndentation")
     private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, fragment)
-            transaction.addToBackStack(fragment.tag)
-            transaction.commit()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(fragment.tag)
+        transaction.commit()
     }
 
     private fun showExitConfirmationDialog() {
