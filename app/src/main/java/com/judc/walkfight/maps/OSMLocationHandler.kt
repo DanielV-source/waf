@@ -19,7 +19,21 @@ class OSMLocationHandler(private val context: Context) : LocationListener {
         fun requestLocationUpdates(listener: LocationListener) {
             this.locationListener = listener
             if (checkLocationPermission()) {
-                locationManager?.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, this)
+                if (locationManager?.allProviders?.contains(LocationManager.GPS_PROVIDER) == true) {
+                        locationManager?.requestLocationUpdates(
+                            LocationManager.GPS_PROVIDER,
+                            0,
+                            0f,
+                            this
+                        )
+                }else {
+                    locationManager?.requestLocationUpdates(
+                        LocationManager.NETWORK_PROVIDER,
+                        0,
+                        0f,
+                        this
+                    )
+                }
             }
         }
 
