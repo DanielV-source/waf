@@ -1,4 +1,5 @@
 package com.judc.walkfight.coroutines
+
 import com.judc.walkfight.utils.DirectionsResponse
 import com.judc.walkfight.utils.OpenRouteServiceApiClient
 import kotlinx.coroutines.Dispatchers
@@ -6,15 +7,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-data class FightPoints(
-    val startingPoint: List<Double>,
-    val fightPoint1: List<Double>,
-    val fightPoint2: List<Double>,
-    val fightPoint3: List<Double>,
-    val finalBoss: List<Double>
-)
-
-fun fetchDirections(apiKey: String, start: String, end: String): FightPoints? {
+fun fetchDirections(apiKey: String, start: String, end: String): List<List<Double>>? {
     return runBlocking {
         try {
             val response: Response<DirectionsResponse> =
@@ -32,10 +25,12 @@ fun fetchDirections(apiKey: String, start: String, end: String): FightPoints? {
                     val startingPoint = fullPathPoints.first()
                     val fightPoint1 = fullPathPoints[fullPathPointsSize / 4]
                     val fightPoint2 = fullPathPoints[fullPathPointsSize / 2]
-                    val fightPoint3 = fullPathPoints[(fullPathPointsSize / 1.2).toInt()]
+                    val fightPoint3 =
+                        fullPathPoints[(fullPathPointsSize * 5 / 6)] // Changed from /1.2 to * 5/6
                     val finalBoss = fullPathPoints.last()
 
-                    FightPoints(startingPoint, fightPoint1, fightPoint2, fightPoint3, finalBoss)
+                    // Return the list of fight points
+                    listOf(startingPoint, fightPoint1, fightPoint2, fightPoint3, finalBoss)
                 }
             } else {
                 println("Error: ${response.code()}")
