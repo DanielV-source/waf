@@ -35,14 +35,12 @@ class OSMFragment : Fragment() {
         osmLocationHandler = view.context?.let { OSMLocationHandler(it) }!!
         osmMapHandler = view.context?.let { OSMMapHandler(it, mapView) }!!
 
-        val currentLocationMarker = osmMapHandler.getCurrentLocationMarker()
-
         osmLocationHandler.requestLocationUpdates { location ->
             osmMapHandler.updateMapLocation(
                 location.latitude,
                 location.longitude
             )
-            currentLocationMarker.position = GeoPoint(location.latitude, location.longitude)
+            osmMapHandler.updateNextPointLocation(43.383924, -8.401906)
         }
 
         fightButton.setOnClickListener {

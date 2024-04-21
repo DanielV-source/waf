@@ -22,3 +22,5 @@ app/src/debug/google-services.json
 
 # Ignore the default_web_client_id file
 app/src/main/res/values/ids.xml
+
+app/release/*

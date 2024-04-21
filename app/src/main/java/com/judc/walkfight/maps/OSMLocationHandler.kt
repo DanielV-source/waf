@@ -1,37 +1,63 @@
 package com.judc.walkfight.maps
 
+import android.app.Activity
 import android.content.Context
-import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.Priority
+import android.Manifest
+import android.content.pm.PackageManager
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
-class OSMLocationHandler(private val context: Context) : LocationListener {
+class OSMLocationHandler(private val context: Context) {
 
-        private var locationManager: LocationManager? = null
-        private var locationListener: LocationListener? = null
+    private var fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+    private lateinit var locationCallback: LocationCallback
 
-        init {
-            locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+    init {
+        checkLocationPermission()
+    }
+
+    private fun checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(context as Activity,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_LOCATION_PERMISSION)
         }
+    }
 
-        fun requestLocationUpdates(listener: LocationListener) {
-            this.locationListener = listener
-            if (checkLocationPermission()) {
-                locationManager?.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, this)
+    fun requestLocationUpdates(listener: (Location) -> Unit) {
+        val locationRequestBuilder = LocationRequest.Builder(
+            Priority.PRIORITY_BALANCED_POWER_ACCURACY,
+            6000
+        )
+        locationRequestBuilder.setMinUpdateIntervalMillis(3000)
+        val locationRequest = locationRequestBuilder.build()
+
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                for (location in locationResult.locations) {
+                    listener(location)
+                }
             }
         }
 
-        fun removeLocationUpdates() {
-            locationManager?.removeUpdates(this)
+        if (context.checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null)
         }
+    }
 
-        override fun onLocationChanged(location: Location) {
-            locationListener?.onLocationChanged(location)
-        }
+    fun removeLocationUpdates() {
+        fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
 
-        private fun checkLocationPermission(): Boolean {
-            return ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-        }
+    companion object {
+        private const val REQUEST_LOCATION_PERMISSION = 1000
+    }
 }
