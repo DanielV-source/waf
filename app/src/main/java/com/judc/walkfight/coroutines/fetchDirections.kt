@@ -6,16 +6,21 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-fun fetchDirections(apiKey: String, start: String, end: String) {
-    runBlocking {
+data class FightPoints(
+    val startingPoint: List<Double>,
+    val fightPoint1: List<Double>,
+    val fightPoint2: List<Double>,
+    val fightPoint3: List<Double>,
+    val finalBoss: List<Double>
+)
+
+fun fetchDirections(apiKey: String, start: String, end: String): FightPoints? {
+    return runBlocking {
         try {
-            val response: Response<DirectionsResponse> = withContext(Dispatchers.IO) {
-                OpenRouteServiceApiClient.apiService.getDirections(
-                    apiKey,
-                    start,
-                    end
-                )
-            }
+            val response: Response<DirectionsResponse> =
+                withContext(Dispatchers.IO) {
+                    OpenRouteServiceApiClient.apiService.getDirections(apiKey, start, end)
+                }
 
             if (response.isSuccessful) {
                 val directionsResponse = response.body()
@@ -23,24 +28,22 @@ fun fetchDirections(apiKey: String, start: String, end: String) {
                     val fullPathPoints = it.features[0].geometry.coordinates
                     val fullPathPointsSize = fullPathPoints.size
 
-                    // Get elements from the calculated positions
+                    // Calculate fight points
                     val startingPoint = fullPathPoints.first()
                     val fightPoint1 = fullPathPoints[fullPathPointsSize / 4]
                     val fightPoint2 = fullPathPoints[fullPathPointsSize / 2]
                     val fightPoint3 = fullPathPoints[(fullPathPointsSize / 1.2).toInt()]
                     val finalBoss = fullPathPoints.last()
 
-                    println("Starting point: $startingPoint")
-                    println("First challenge: $fightPoint1")
-                    println("Second challenge: $fightPoint2")
-                    println("Third challenge: $fightPoint3")
-                    println("Final boss: $finalBoss")
+                    FightPoints(startingPoint, fightPoint1, fightPoint2, fightPoint3, finalBoss)
                 }
             } else {
                 println("Error: ${response.code()}")
+                null
             }
         } catch (e: Exception) {
             e.printStackTrace()
+            null
         }
     }
 }
