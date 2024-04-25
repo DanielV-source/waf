@@ -4,6 +4,7 @@
     <string name="main_startMsgText">Start your adventure now! Sign in for free!</string>
     <string name="main_logoText">Walk &amp; Fight</string>
     <string name="main_skip_signin">Skip sign in</string>
+    <string name="ors_api_key">tu_clave_de_api</string>
 
     <string name="initmenu_startadventuremenu">Start adventure</string>
     <string name="initmenu_resumeadventuremenu">Resume adventure</string>
