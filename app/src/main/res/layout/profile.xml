@@ -30,7 +30,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Nombre"
             android:textSize="20sp"
@@ -43,10 +43,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="20sp"
             android:textColor="@android:color/black"
+            android:hint="Jesús Ulises Daniel Caetán"
+            android:textColorHint="@color/black"
             android:background="#FFFFFF"
             android:inputType="textPersonName"
-            android:autofillHints="" />
+            android:autofillHints=""/>
 
     </LinearLayout>
 
@@ -56,7 +59,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Username"
             android:textSize="20sp"
@@ -70,6 +73,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@android:color/black"
+            android:hint="judc"
+            android:textColorHint="@color/black"
             android:background="#FFFFFF"
             android:inputType="textPersonName"
             android:autofillHints="" />
@@ -82,7 +87,7 @@
             android:orientation="horizontal">
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Email"
             android:textSize="20sp"
@@ -96,6 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@android:color/black"
+            android:hint="waf.judc@gmail.com"
+            android:textColorHint="@color/black"
             android:background="#FFFFFF"
             android:inputType="textEmailAddress"
             android:autofillHints="" />
