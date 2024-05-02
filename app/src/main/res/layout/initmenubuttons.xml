@@ -12,31 +12,34 @@
 
     <Button
         android:id="@+id/startadventuremenu"
-        android:layout_width="162dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="-10dp"
-        android:background="@color/material_dynamic_neutral40"
+        android:background="#6200EE"
         android:text="@string/initmenu_startadventuremenu"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="25dp" />
 
     <Button
         android:id="@+id/resumeadventuremenu"
-        android:layout_width="162dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:background="@color/material_dynamic_neutral40"
+        android:background="#6200EE"
         android:text="@string/initmenu_resumeadventuremenu"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="25dp" />
 
     <Button
         android:id="@+id/mystatisticsmenu"
-        android:layout_width="162dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:background="@color/material_dynamic_neutral40"
+        android:background="#6200EE"
         android:text="@string/initmenu_mystatisticsmenu"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="25dp" />
 </LinearLayout>
