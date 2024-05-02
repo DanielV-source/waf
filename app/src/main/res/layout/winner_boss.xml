@@ -10,8 +10,8 @@
         android:layout_width="242dp"
         android:layout_height="112dp"
         android:layout_marginTop="86dp"
-        android:layout_marginStart="86dp"
-        android:backgroundTint="#4CAF50">
+        android:backgroundTint="#4CAF50"
+        android:layout_gravity="center">
 
         <GridLayout
             android:layout_width="match_parent"

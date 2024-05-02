@@ -26,8 +26,9 @@
                 android:layout_gravity="center"
                 android:text="@string/main_logoText"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
         </androidx.appcompat.widget.Toolbar>
+
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
@@ -36,14 +37,14 @@
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="match_parent"
+        android:layout_width="140dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:textSize="15sp"
         app:itemTextColor="@color/white"
         app:itemIconTint="@color/white"
         android:foregroundTint="@color/white"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/material_dynamic_neutral40"
         app:popupTheme="@style/AppTheme"
         app:itemTextAppearance="@style/DrawerItem"
         app:menu="@menu/drawer_menu"
