@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="50dp"
-            android:background="@color/material_dynamic_neutral40"
+            android:background="#000000"
             android:text="@string/main_skip_signin"
             android:textColor="@color/white"
             android:translationY="0dp" />

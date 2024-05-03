@@ -11,7 +11,7 @@
         android:id="@+id/win_fight"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
-        android:background="@color/material_dynamic_neutral40"
+        android:background="#000000"
         android:text="Win fight"
         android:textColor="@color/white" />
 
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="@color/material_dynamic_neutral40"
+        android:background="#000000"
         android:text="Lose fight"
         android:textColor="@color/white" />
 

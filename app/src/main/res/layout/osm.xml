@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="450dp"
-            android:background="@color/material_dynamic_neutral40"
+            android:background="#000000"
             android:text="Fight!"
             android:textColor="@color/white" />
     </LinearLayout>

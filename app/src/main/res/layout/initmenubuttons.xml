@@ -16,7 +16,7 @@
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="-10dp"
-        android:background="#6200EE"
+        android:background="#000000"
         android:text="@string/initmenu_startadventuremenu"
         android:textColor="@color/white"
         android:textSize="25dp" />
@@ -27,7 +27,7 @@
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:background="#6200EE"
+        android:background="#000000"
         android:text="@string/initmenu_resumeadventuremenu"
         android:textColor="@color/white"
         android:textSize="25dp" />
@@ -38,7 +38,7 @@
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:background="#6200EE"
+        android:background="#000000"
         android:text="@string/initmenu_mystatisticsmenu"
         android:textColor="@color/white"
         android:textSize="25dp" />
