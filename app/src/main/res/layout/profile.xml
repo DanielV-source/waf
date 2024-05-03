@@ -121,9 +121,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="#000000"
+            android:background="#FFFFFF"
             android:text="Guardar"
-            android:textColor="@color/white" />
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/buttonEdit"
@@ -131,9 +131,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="#000000"
+            android:background="#FFFFFF"
             android:text="Editar"
-            android:textColor="@color/white" />
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/buttonHelp"
@@ -141,9 +141,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="#000000"
+            android:background="#FFFFFF"
             android:text="Ayuda"
-            android:textColor="@color/white" />
+            android:textColor="#000000" />
 
     </LinearLayout>
 

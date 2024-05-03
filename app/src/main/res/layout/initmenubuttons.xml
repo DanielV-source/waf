@@ -16,9 +16,9 @@
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="-10dp"
-        android:background="#000000"
+        android:background="#FFFFFF"
         android:text="@string/initmenu_startadventuremenu"
-        android:textColor="@color/white"
+        android:textColor="#000000"
         android:textSize="25dp" />
 
     <Button
@@ -27,9 +27,9 @@
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:background="#000000"
+        android:background="#FFFFFF"
         android:text="@string/initmenu_resumeadventuremenu"
-        android:textColor="@color/white"
+        android:textColor="#000000"
         android:textSize="25dp" />
 
     <Button
@@ -38,8 +38,8 @@
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:background="#000000"
+        android:background="#FFFFFF"
         android:text="@string/initmenu_mystatisticsmenu"
-        android:textColor="@color/white"
+        android:textColor="#000000"
         android:textSize="25dp" />
 </LinearLayout>

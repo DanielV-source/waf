@@ -11,9 +11,9 @@
         android:id="@+id/win_fight"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
-        android:background="#000000"
+        android:background="#FFFFFF"
         android:text="Win fight"
-        android:textColor="@color/white" />
+        android:textColor="#000000" />
 
     <Button
         android:id="@+id/lose_fight"
@@ -21,8 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="#000000"
+        android:background="#FFFFFF"
         android:text="Lose fight"
-        android:textColor="@color/white" />
+        android:textColor="#000000" />
 
 </LinearLayout>

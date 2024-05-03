@@ -57,9 +57,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="164dp"
-        android:background="#000000"
+        android:background="#FFFFFF"
         android:text="@string/loser_boss_tryfightagain"
-        android:textColor="@color/white" />
+        android:textColor="#000000" />
 
     <Button
         android:id="@+id/main_menu"
@@ -67,8 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="#000000"
+        android:background="#FFFFFF"
         android:text="@string/mainmenu"
-        android:textColor="@color/white" />
+        android:textColor="#000000" />
 
 </LinearLayout>
