@@ -1,6 +1,7 @@
 package com.judc.walkfight
 
 import android.annotation.SuppressLint
+import android.hardware.Sensor
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.OnBackPressedCallback
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import com.judc.walkfight.fragments.MainFragment
 import com.judc.walkfight.fragments.ProfileFragment
+import com.judc.walkfight.utils.GetSensorUtilities
 
 class MainActivity : AppCompatActivity() {
 
@@ -85,6 +87,10 @@ class MainActivity : AppCompatActivity() {
                 drawerLayout.closeDrawer(GravityCompat.START)
             }
         }
+        val sensorChecker = GetSensorUtilities()
+        sensorChecker.isSensorAvailable(this, Sensor.TYPE_ACCELEROMETER)
+        sensorChecker.isSensorAvailable(this, Sensor.TYPE_GYROSCOPE)
+        sensorChecker.hasMicrophone(this)
     }
 
     @SuppressLint("SuspiciousIndentation")

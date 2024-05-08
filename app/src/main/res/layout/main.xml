@@ -34,11 +34,20 @@
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
         </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/waf_app_icon"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp" />
+
         <EditText
             android:id="@+id/startMsgText"
             style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="203dp"
             android:clickable="false"
             android:contextClickable="false"
             android:drawableTint="#FFFFFF"
@@ -77,14 +86,14 @@
             android:textColor="@color/white"
             android:textColorHint="#00FFFFFF"
             android:textIsSelectable="false"
-            android:translationY="60dp" />
+            android:translationY="-60dp" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:layout_margin="100dp"
-            android:translationY="0dp" />
+            android:layout_margin="50dp"
+            android:translationY="-60dp" />
 
         <Button
             android:id="@+id/skip_signin"
@@ -94,7 +103,7 @@
             android:background="@color/material_dynamic_neutral40"
             android:text="@string/main_skip_signin"
             android:textColor="@color/white"
-            android:translationY="0dp" />
+            android:translationY="-60dp" />
     </LinearLayout>
 
 
