@@ -141,8 +141,6 @@ class LoginActivity : AppCompatActivity() {
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            Toast.makeText(this, "Going to MainActivity", Toast.LENGTH_LONG).show()
-            Log.d(TAG, "My Login Activity: Intent load MainActivity")
             // Finish the current activity
             finish()
         }
@@ -156,8 +154,6 @@ class LoginActivity : AppCompatActivity() {
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        Toast.makeText(this, "Going to MainActivity", Toast.LENGTH_LONG).show()
-        Log.d(TAG, "My Login Activity: Intent load MainActivity")
 
         // Finish the current activity
         finish()

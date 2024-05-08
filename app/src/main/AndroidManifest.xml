@@ -17,8 +17,6 @@
         android:theme="@style/Theme.WalkFight"
         tools:targetApi="31">
 
-        <receiver android:name=".maps.GeofenceBroadcastReceiver" />
-
         <activity
             android:name=".LoginActivity"
             android:exported="true"

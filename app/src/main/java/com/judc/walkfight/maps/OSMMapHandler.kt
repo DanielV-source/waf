@@ -35,14 +35,7 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
     private var currentLocationMarker: OSMMarker = OSMMarker(context, mapView, null)
     private var nextPointLocationMarker: OSMMarker =
         OSMMarker(context, mapView, R.drawable.marker_default_blue_xxx)
-    val sharedPreferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE)/*
-    private val geofencePendingIntent: PendingIntent by lazy {
-        val intent = Intent(context, GeofenceBroadcastReceiver::class.java)
-        PendingIntent.getBroadcast(
-            context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-    }
-    */
+    val sharedPreferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
 
     init {
         Configuration.getInstance()
@@ -66,13 +59,12 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         if (isUserNear) {
             Toast.makeText(context, "User reached the fight point", Toast.LENGTH_LONG).show();
             var currentPoint = sharedPreferences.getInt("currentPoint", 0)
-            println("CURRENT POINT $currentPoint")
+            println("Current point $currentPoint")
             var fightPoints = sharedPreferences.getString("fightPoints", null)
             val coordinateStrings = fightPoints?.split(";")
             val fightPointsList = coordinateStrings?.map { it.split(",").map { it.toDouble() } }
             val nextPoint = fightPointsList?.get(currentPoint + 1)
             println("Next point at $nextPoint")
-            println(nextPointLocationMarker.getMarker().position)
             if (nextPoint != null && nextPoint.size >= 2) {
                 updateNextPointLocation(nextPoint[1], nextPoint[0], false)
             } else {
@@ -95,9 +87,9 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         }
         nextPointLocationMarker.setPosition(latitude, longitude)
         var difficulty = sharedPreferences.getString("difficulty", null)
-        println("DIFFICULTY: $difficulty")
+        println("Current difficulty: $difficulty")
         var totalScore = sharedPreferences.getInt("totalScore", 0)
-        println("TOTAL SCORE: $totalScore")
+        println("Game score: $totalScore")
         var circle: Polygon = createCircle(getNextPointLocationMarker().position, 0.05)
         mapView.overlays.add(circle)
     }
@@ -150,49 +142,5 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         val distance = R * c
         return distance <= radius
     }
-
-
-        /*
-    fun createGeofence() {
-        var geofencingClient: GeofencingClient = LocationServices.getGeofencingClient(context)
-
-        // Define the geofence
-        val geofence = Geofence.Builder()
-            .setRequestId("1")
-            .setCircularRegion(
-                -8.409821, // Latitude
-                43.36184,  // Longitude
-                10F     // Radius in meters
-            )
-            .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER)
-            .build()
-
-        // Create the geofencing request
-        val geofencingRequest = GeofencingRequest.Builder()
-            .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
-            .addGeofence(geofence)
-            .build()
-
-        // Add the geofence to the geofencing client
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Handle permission
-            return
-        }
-        geofencingClient.addGeofences(geofencingRequest, geofencePendingIntent)?.run {
-            addOnSuccessListener {
-                println("Working")
-                // Geofence added successfully
-            }
-            addOnFailureListener { e ->
-                // Print the error message
-                println("Failed to add geofence: ${e.message}")
-            }
-        }
-    }
-    */
 
 }

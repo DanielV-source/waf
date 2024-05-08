@@ -54,7 +54,7 @@ class OSMFragment : Fragment() {
                         getString(R.string.ors_api_key), coordinates[0], coordinates[1]
                     )
                     if (fetchedFightPoints != null) {
-                        println("FETCHED FIGHT POINTS $fetchedFightPoints")
+                        println("Fetched fight points $fetchedFightPoints")
                         val serializedString =
                             fetchedFightPoints.joinToString(";") { it.joinToString(",") }
                         sharedPreferences.edit().putString("fightPoints", serializedString).apply()
@@ -65,8 +65,6 @@ class OSMFragment : Fragment() {
                 }
             }
         }
-        println("FIGHT POINTS $fightPoints")
-        Toast.makeText(view.context, fightPoints, Toast.LENGTH_SHORT).show()
 
         mapView = view.findViewById(R.id.osmmap)
         val fightButton: Button = view.findViewById(R.id.fight)

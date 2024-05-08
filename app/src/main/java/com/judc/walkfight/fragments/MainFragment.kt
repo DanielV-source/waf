@@ -28,26 +28,17 @@ class MainFragment : Fragment() {
         startAdventureButton.setOnClickListener {
             // TODO: Restart the actual destination here
             replaceFragment(R.id.fragment_container, OSMFragment(), addToBackStack = true, tag = "OSMFragment")
-
-            Toast.makeText(this.context, "Going to OSMFragment", Toast.LENGTH_LONG).show()
-            Log.d(MainFragment().tag, "Main Fragment: Trying to load OSMFragment")
         }
 
 
         val resumeAdventureButton: Button = view.findViewById(R.id.resumeadventuremenu)
         resumeAdventureButton.setOnClickListener {
             replaceFragment(R.id.fragment_container, OSMFragment(), addToBackStack = true, tag = "OSMFragment")
-
-            Toast.makeText(this.context, "Going to OSMFragment", Toast.LENGTH_LONG).show()
-            Log.d(MainFragment().tag, "Main Fragment: Trying to load OSMFragment")
         }
 
         val myStatisticsButton: Button = view.findViewById(R.id.mystatisticsmenu)
         myStatisticsButton.setOnClickListener {
             replaceFragment(R.id.fragment_container, MyStatisticsFragment(), addToBackStack = true, tag = "MyStatisticsFragment")
-
-            Toast.makeText(this.context, "Going to MyStatisticsFragment", Toast.LENGTH_LONG).show()
-            Log.d(MainFragment().tag, "Main Fragment: Trying to load MyStatisticsFragment")
         }
     }
 

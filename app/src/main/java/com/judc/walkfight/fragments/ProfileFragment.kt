@@ -16,9 +16,6 @@ class ProfileFragment : Fragment() {
     ): View? {
         // TODO: Show profile information
         val view = inflater.inflate(R.layout.profile, container, false)
-        Toast.makeText(this.context, "Showing your profile", Toast.LENGTH_LONG).show()
-        Log.d(ProfileFragment().tag, "My Profile Fragment: Showing your profile info!")
-
         return view
     }
 
