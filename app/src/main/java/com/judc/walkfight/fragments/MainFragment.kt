@@ -1,14 +1,12 @@
 package com.judc.walkfight.fragments
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.judc.walkfight.MainActivity
 import com.judc.walkfight.R
 import com.judc.walkfight.Utils.Companion.replaceFragment
 
@@ -23,9 +21,11 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val sharedPreferences = view.context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
 
         val startAdventureButton: Button = view.findViewById(R.id.startadventuremenu)
         startAdventureButton.setOnClickListener {
+            sharedPreferences.edit().putInt("currentPoint", 0).apply()
             // TODO: Restart the actual destination here
             replaceFragment(R.id.fragment_container, OSMFragment(), addToBackStack = true, tag = "OSMFragment")
         }

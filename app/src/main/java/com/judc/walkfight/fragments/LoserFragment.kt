@@ -1,5 +1,6 @@
 package com.judc.walkfight.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,9 +25,11 @@ class LoserFragment : Fragment() {
             // TODO: DEFEAT AGAINST BOSS LOGIC HERE
 
             view = inflater.inflate(R.layout.loser_boss, container, false)
+            val sharedPreferences = view.context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
 
             val nextWaypointButton: Button = view.findViewById(R.id.tryfightagain)
             nextWaypointButton.setOnClickListener {
+                sharedPreferences.edit().putBoolean("finishFight", true).apply()
                 replaceFragment(R.id.fragment_container, OSMFragment(), addToBackStack = true,
                     tag="LoserFragment")
 
@@ -47,9 +50,11 @@ class LoserFragment : Fragment() {
             // TODO: DEFEAT AGAINST ENEMY LOGIC HERE
 
             view = inflater.inflate(R.layout.loser_waypoint, container, false)
+            val sharedPreferences = view.context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
 
             val nextWaypointButton: Button = view.findViewById(R.id.nextwaypoint)
             nextWaypointButton.setOnClickListener {
+                sharedPreferences.edit().putBoolean("finishFight", true).apply()
                 replaceFragment(R.id.fragment_container, OSMFragment(), addToBackStack = true,
                     tag="OSMFragment")
 

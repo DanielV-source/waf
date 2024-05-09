@@ -1,32 +1,18 @@
 package com.judc.walkfight.maps
 
-import com.judc.walkfight.R
 import android.content.Context
 import android.preference.PreferenceManager
+import com.judc.walkfight.R
 import org.osmdroid.api.IMapController
 import org.osmdroid.config.Configuration
-import org.osmdroid.events.MapListener
-import org.osmdroid.events.ScrollEvent
-import org.osmdroid.events.ZoomEvent
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
-import android.content.pm.PackageManager
-
 import org.osmdroid.views.overlay.Polygon
+import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
-import android.app.PendingIntent
-import android.content.Intent
-import android.Manifest
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.Geofence
-import com.google.android.gms.location.GeofencingClient
-import com.google.android.gms.location.GeofencingRequest
-import com.google.android.gms.location.LocationServices
-import kotlin.math.atan2
 import kotlin.math.sqrt
 
 class OSMMapHandler(private val context: Context, private val mapView: MapView) {
@@ -49,29 +35,17 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         mapView.overlays.add(nextPointLocationMarker.getMarker())
     }
 
+    fun userReachedFigth(latitude: Double, longitude: Double): Boolean {
+        currentLocationMarker.setPosition(latitude, longitude)
+        return isUserInsideRadius(
+            nextPointLocationMarker.getMarker().position, 0.05, getCurrentLocationMarker().position
+        )
+    }
+
     fun updateMapLocation(latitude: Double, longitude: Double) {
         val newPoint = GeoPoint(latitude, longitude)
         mapController.setCenter(newPoint)
         currentLocationMarker.setPosition(latitude, longitude)
-        var isUserNear = isUserInsideRadius(
-            nextPointLocationMarker.getMarker().position, 0.05, getCurrentLocationMarker().position
-        )
-        if (isUserNear) {
-            Toast.makeText(context, "User reached the fight point", Toast.LENGTH_LONG).show();
-            var currentPoint = sharedPreferences.getInt("currentPoint", 0)
-            println("Current point $currentPoint")
-            var fightPoints = sharedPreferences.getString("fightPoints", null)
-            val coordinateStrings = fightPoints?.split(";")
-            val fightPointsList = coordinateStrings?.map { it.split(",").map { it.toDouble() } }
-            val nextPoint = fightPointsList?.get(currentPoint + 1)
-            println("Next point at $nextPoint")
-            if (nextPoint != null && nextPoint.size >= 2) {
-                updateNextPointLocation(nextPoint[1], nextPoint[0], false)
-            } else {
-                println("Error: Invalid point format")
-            }
-            sharedPreferences.edit().putInt("currentPoint", currentPoint + 1).apply()
-        }
     }
 
     fun updateNextPointLocation(latitude: Double, longitude: Double) {
@@ -126,7 +100,7 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         return polygon
     }
 
-    private fun isUserInsideRadius(
+    fun isUserInsideRadius(
         center: GeoPoint, radius: Double, userPosition: GeoPoint
     ): Boolean {
         val R = 6371
