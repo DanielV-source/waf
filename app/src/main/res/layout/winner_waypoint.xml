@@ -10,7 +10,7 @@
         android:layout_width="242dp"
         android:layout_height="112dp"
         android:layout_marginTop="86dp"
-        android:backgroundTint="#4CAF50"
+        android:backgroundTint="@color/green"
         android:layout_gravity="center">
 
         <GridLayout
@@ -57,9 +57,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="164dp"
-        android:background="@color/material_dynamic_neutral40"
+        android:background="@color/white"
         android:text="@string/winner_waypoint_nextwaypoint"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/share_with_friends"
@@ -67,9 +67,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="@color/material_dynamic_neutral40"
+        android:background="@color/white"
         android:text="@string/loser_waypoint_sharewithfriends"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/main_menu"
@@ -77,8 +77,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="@color/material_dynamic_neutral40"
+        android:background="@color/white"
         android:text="@string/mainmenu"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
 </LinearLayout>

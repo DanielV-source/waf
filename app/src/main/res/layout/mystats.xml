@@ -32,9 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="86dp"
-        android:background="@color/material_dynamic_neutral40"
+        android:background="@color/white"
         android:text="@string/mystats_globalrankingmenu"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/main_menu"
@@ -42,8 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="@color/material_dynamic_neutral40"
+        android:background="@color/white"
         android:text="@string/mainmenu"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
 </LinearLayout>
