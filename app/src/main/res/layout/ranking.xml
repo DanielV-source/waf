@@ -22,7 +22,7 @@
             android:layout_gravity="center_horizontal"
             android:fontFamily="cursive"
             android:text="@string/ranking_rankingText"
-            android:textColor="#FF0000"
+            android:textColor="@color/red_custom"
             android:textSize="50sp"
             android:textStyle="bold"
             android:paddingTop="5dp"

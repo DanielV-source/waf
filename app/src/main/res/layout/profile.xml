@@ -18,7 +18,7 @@
             android:layout_gravity="center_horizontal"
             android:text="My Profile"
             android:textSize="30sp"
-            android:textColor="#FF0000"
+            android:textColor="@color/red_custom"
             android:textStyle="bold"
             android:layout_marginEnd="0dp" />
 
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="Nombre"
             android:textSize="20sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginEnd="20dp" />
 
@@ -47,7 +47,7 @@
             android:textColor="@android:color/black"
             android:hint="Jesús Ulises Daniel Caetán"
             android:textColorHint="@color/black"
-            android:background="#FFFFFF"
+            android:background="@color/white"
             android:inputType="textPersonName"
             android:autofillHints=""/>
 
@@ -61,9 +61,9 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Username"
+            android:text="@string/username"
             android:textSize="20sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginEnd="20dp" />
 
@@ -73,9 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@android:color/black"
-            android:hint="judc"
+            android:hint="@string/judc"
             android:textColorHint="@color/black"
-            android:background="#FFFFFF"
+            android:background="@color/white"
             android:inputType="textPersonName"
             android:autofillHints="" />
 
@@ -89,9 +89,9 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Email"
+            android:text="@string/email"
             android:textSize="20sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginEnd="20dp" />
 
@@ -101,9 +101,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@android:color/black"
-            android:hint="waf.judc@gmail.com"
+            android:hint="@string/waf_judc_gmail_com"
             android:textColorHint="@color/black"
-            android:background="#FFFFFF"
+            android:background="@color/white"
             android:inputType="textEmailAddress"
             android:autofillHints="" />
 
@@ -111,42 +111,39 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:gravity="center"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/buttonSave"
-            android:layout_width="wrap_content"
+            android:layout_width="158dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@color/material_dynamic_neutral40"
-            android:text="Guardar"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:background="@color/white"
+            android:text="@string/guardar"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/buttonEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="158dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@color/material_dynamic_neutral40"
-            android:text="Editar"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:background="@color/white"
+            android:text="@string/editar"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/buttonHelp"
-            android:layout_width="wrap_content"
+            android:layout_width="158dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@color/material_dynamic_neutral40"
-            android:text="Ayuda"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:background="@color/white"
+            android:text="@string/ayuda"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

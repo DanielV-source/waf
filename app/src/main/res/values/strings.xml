@@ -53,5 +53,12 @@
 
     <string name="google_sign_in_failed">Error login with Google, please contact an administrator</string>
     <string name="firebase_error">Error login with Firebase, please contact an administrator</string>
+    <string name="judc">judc</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="waf_judc_gmail_com">waf.judc@gmail.com</string>
+    <string name="guardar">Guardar</string>
+    <string name="editar">Editar</string>
+    <string name="ayuda">Ayuda</string>
 
 </resources>
