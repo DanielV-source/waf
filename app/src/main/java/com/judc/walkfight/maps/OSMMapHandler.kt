@@ -1,32 +1,18 @@
 package com.judc.walkfight.maps
 
-import com.judc.walkfight.R
 import android.content.Context
 import android.preference.PreferenceManager
+import com.judc.walkfight.R
 import org.osmdroid.api.IMapController
 import org.osmdroid.config.Configuration
-import org.osmdroid.events.MapListener
-import org.osmdroid.events.ScrollEvent
-import org.osmdroid.events.ZoomEvent
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
-import android.content.pm.PackageManager
-
 import org.osmdroid.views.overlay.Polygon
+import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
-import android.app.PendingIntent
-import android.content.Intent
-import android.Manifest
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.Geofence
-import com.google.android.gms.location.GeofencingClient
-import com.google.android.gms.location.GeofencingRequest
-import com.google.android.gms.location.LocationServices
-import kotlin.math.atan2
 import kotlin.math.sqrt
 
 class OSMMapHandler(private val context: Context, private val mapView: MapView) {
@@ -35,14 +21,7 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
     private var currentLocationMarker: OSMMarker = OSMMarker(context, mapView, null)
     private var nextPointLocationMarker: OSMMarker =
         OSMMarker(context, mapView, R.drawable.marker_default_blue_xxx)
-    val sharedPreferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE)/*
-    private val geofencePendingIntent: PendingIntent by lazy {
-        val intent = Intent(context, GeofenceBroadcastReceiver::class.java)
-        PendingIntent.getBroadcast(
-            context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-    }
-    */
+    val sharedPreferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
 
     init {
         Configuration.getInstance()
@@ -56,30 +35,17 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         mapView.overlays.add(nextPointLocationMarker.getMarker())
     }
 
+    fun userReachedFigth(latitude: Double, longitude: Double): Boolean {
+        currentLocationMarker.setPosition(latitude, longitude)
+        return isUserInsideRadius(
+            nextPointLocationMarker.getMarker().position, 0.05, getCurrentLocationMarker().position
+        )
+    }
+
     fun updateMapLocation(latitude: Double, longitude: Double) {
         val newPoint = GeoPoint(latitude, longitude)
         mapController.setCenter(newPoint)
         currentLocationMarker.setPosition(latitude, longitude)
-        var isUserNear = isUserInsideRadius(
-            nextPointLocationMarker.getMarker().position, 0.05, getCurrentLocationMarker().position
-        )
-        if (isUserNear) {
-            Toast.makeText(context, "User reached the fight point", Toast.LENGTH_LONG).show();
-            var currentPoint = sharedPreferences.getInt("currentPoint", 0)
-            println("CURRENT POINT $currentPoint")
-            var fightPoints = sharedPreferences.getString("fightPoints", null)
-            val coordinateStrings = fightPoints?.split(";")
-            val fightPointsList = coordinateStrings?.map { it.split(",").map { it.toDouble() } }
-            val nextPoint = fightPointsList?.get(currentPoint + 1)
-            println("Next point at $nextPoint")
-            println(nextPointLocationMarker.getMarker().position)
-            if (nextPoint != null && nextPoint.size >= 2) {
-                updateNextPointLocation(nextPoint[1], nextPoint[0], false)
-            } else {
-                println("Error: Invalid point format")
-            }
-            sharedPreferences.edit().putInt("currentPoint", currentPoint + 1).apply()
-        }
     }
 
     fun updateNextPointLocation(latitude: Double, longitude: Double) {
@@ -95,9 +61,9 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         }
         nextPointLocationMarker.setPosition(latitude, longitude)
         var difficulty = sharedPreferences.getString("difficulty", null)
-        println("DIFFICULTY: $difficulty")
+        println("Current difficulty: $difficulty")
         var totalScore = sharedPreferences.getInt("totalScore", 0)
-        println("TOTAL SCORE: $totalScore")
+        println("Game score: $totalScore")
         var circle: Polygon = createCircle(getNextPointLocationMarker().position, 0.05)
         mapView.overlays.add(circle)
     }
@@ -134,7 +100,7 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         return polygon
     }
 
-    private fun isUserInsideRadius(
+    fun isUserInsideRadius(
         center: GeoPoint, radius: Double, userPosition: GeoPoint
     ): Boolean {
         val R = 6371
@@ -150,49 +116,5 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         val distance = R * c
         return distance <= radius
     }
-
-
-        /*
-    fun createGeofence() {
-        var geofencingClient: GeofencingClient = LocationServices.getGeofencingClient(context)
-
-        // Define the geofence
-        val geofence = Geofence.Builder()
-            .setRequestId("1")
-            .setCircularRegion(
-                -8.409821, // Latitude
-                43.36184,  // Longitude
-                10F     // Radius in meters
-            )
-            .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER)
-            .build()
-
-        // Create the geofencing request
-        val geofencingRequest = GeofencingRequest.Builder()
-            .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
-            .addGeofence(geofence)
-            .build()
-
-        // Add the geofence to the geofencing client
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Handle permission
-            return
-        }
-        geofencingClient.addGeofences(geofencingRequest, geofencePendingIntent)?.run {
-            addOnSuccessListener {
-                println("Working")
-                // Geofence added successfully
-            }
-            addOnFailureListener { e ->
-                // Print the error message
-                println("Failed to add geofence: ${e.message}")
-            }
-        }
-    }
-    */
 
 }

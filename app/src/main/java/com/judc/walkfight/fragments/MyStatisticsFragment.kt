@@ -23,21 +23,12 @@ class MyStatisticsFragment : Fragment() {
         globalRankingButton.setOnClickListener {
             replaceFragment(R.id.fragment_container, RankingFragment(), addToBackStack = true,
                 tag = "RankingFragment")
-
-            Toast.makeText(this.context, "Going to RankingFragment", Toast.LENGTH_LONG).show()
-            Log.d(MyStatisticsFragment().tag, "My Statistics Fragment: Trying to load Ranking")
         }
 
         val mainMenuButton: Button = view.findViewById(R.id.main_menu)
         mainMenuButton.setOnClickListener {
             replaceFragment(R.id.fragment_container, MainFragment(), addToBackStack = true,
                 tag = "MainFragment")
-
-            Toast.makeText(this.context, "Going to MainFragment", Toast.LENGTH_LONG).show()
-            Log.d(
-                MyStatisticsFragment().tag,
-                "My Statistics Fragment: Trying to load MainFragment"
-            )
         }
 
         return view

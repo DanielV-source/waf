@@ -11,13 +11,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.gson.Gson
 import com.judc.walkfight.R
 import com.judc.walkfight.Utils.Companion.replaceFragment
 import com.judc.walkfight.coroutines.fetchDirections
 import com.judc.walkfight.maps.OSMLocationHandler
 import com.judc.walkfight.maps.OSMMapHandler
-import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 
 class OSMFragment : Fragment() {
@@ -54,7 +52,7 @@ class OSMFragment : Fragment() {
                         getString(R.string.ors_api_key), coordinates[0], coordinates[1]
                     )
                     if (fetchedFightPoints != null) {
-                        println("FETCHED FIGHT POINTS $fetchedFightPoints")
+                        println("Fetched fight points $fetchedFightPoints")
                         val serializedString =
                             fetchedFightPoints.joinToString(";") { it.joinToString(",") }
                         sharedPreferences.edit().putString("fightPoints", serializedString).apply()
@@ -65,8 +63,6 @@ class OSMFragment : Fragment() {
                 }
             }
         }
-        println("FIGHT POINTS $fightPoints")
-        Toast.makeText(view.context, fightPoints, Toast.LENGTH_SHORT).show()
 
         mapView = view.findViewById(R.id.osmmap)
         val fightButton: Button = view.findViewById(R.id.fight)
@@ -75,20 +71,35 @@ class OSMFragment : Fragment() {
 
         osmLocationHandler.requestLocationUpdates { location ->
             osmMapHandler.updateMapLocation(location.latitude, location.longitude)
+            var fightReached = osmMapHandler.userReachedFigth(location.latitude, location.longitude)
+            if (fightReached) {
+                fightButton.visibility = View.VISIBLE
+            } else {
+                fightButton.visibility = View.GONE
+            }
             println("Current user location: ${osmMapHandler.getCurrentLocationMarker().position}")
         }
 
         val coordinateStrings = fightPoints?.split(";")
         val fightPointsList = coordinateStrings?.map { it.split(",").map { it.toDouble() } }
         val startingPoint = fightPointsList?.get(0)
-        println("Starting at $startingPoint")
-        sharedPreferences.edit().putInt("currentPoint", 0).apply()
-
-        if (startingPoint != null && startingPoint.size >= 2) {
-            osmMapHandler.updateNextPointLocation(startingPoint[1], startingPoint[0])
+        var currentPoint = sharedPreferences.getInt("currentPoint", 0)
+        val nextPoint = fightPointsList?.get(currentPoint)
+        if (currentPoint == 0) {
+            if (startingPoint != null && startingPoint.size >= 2) {
+                osmMapHandler.updateNextPointLocation(startingPoint[1], startingPoint[0], false)
+            } else {
+                println("Error: Invalid point format")
+            }
         } else {
-            println("Error: Invalid starting point format")
+            if (nextPoint != null && nextPoint.size >= 2) {
+                osmMapHandler.updateNextPointLocation(nextPoint[1], nextPoint[0], false)
+            } else {
+                println("Error: Invalid point format")
+            }
         }
+        sharedPreferences.edit().putBoolean("finishFight", false).apply()
+        sharedPreferences.edit().putInt("currentPoint", currentPoint + 1).apply()
 
         fightButton.setOnClickListener {
             replaceFragment(
