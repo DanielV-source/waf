@@ -56,7 +56,7 @@ class OSMFragment : Fragment() {
                         val serializedString =
                             fetchedFightPoints.joinToString(";") { it.joinToString(",") }
                         sharedPreferences.edit().putString("fightPoints", serializedString).apply()
-                        sharedPreferences.edit().putString("difficulty", "easy").apply()
+                        sharedPreferences.edit().putInt("difficulty", 0).apply()
                         sharedPreferences.edit().putInt("totalScore", 0).apply()
                         fightPoints = serializedString
                     }
