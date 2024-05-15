@@ -60,7 +60,7 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
             nextPointLocationMarker.setIcon(R.drawable.marker_default_red_xxx)
         }
         nextPointLocationMarker.setPosition(latitude, longitude)
-        var difficulty = sharedPreferences.getString("difficulty", null)
+        var difficulty = sharedPreferences.getInt("difficulty", 0)
         println("Current difficulty: $difficulty")
         var totalScore = sharedPreferences.getInt("totalScore", 0)
         println("Game score: $totalScore")
