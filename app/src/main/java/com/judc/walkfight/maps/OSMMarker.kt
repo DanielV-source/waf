@@ -19,8 +19,8 @@ class OSMMarker (private val context: Context, private val mapView: MapView, new
     }
 
     fun setIcon(newIconResource: Int) {
-        val defaultIconWidth = osmMarker.icon.intrinsicWidth
-        val defaultIconHeight = osmMarker.icon.intrinsicHeight
+        val defaultIconWidth = osmMarker.icon.intrinsicWidth * 2
+        val defaultIconHeight = (osmMarker.icon.intrinsicHeight * 1.25).toInt()
 
         val newIconBitmap = BitmapFactory.decodeResource(context.resources, newIconResource)
         val scaledNewIconBitmap = Bitmap.createScaledBitmap(newIconBitmap, defaultIconWidth, defaultIconHeight, true)

@@ -18,7 +18,7 @@ import kotlin.math.sqrt
 class OSMMapHandler(private val context: Context, private val mapView: MapView) {
 
     private val mapController: IMapController = mapView.controller
-    private var currentLocationMarker: OSMMarker = OSMMarker(context, mapView, null)
+    private var currentLocationMarker: OSMMarker = OSMMarker(context, mapView, R.drawable.player_marker)
     private var nextPointLocationMarker: OSMMarker =
         OSMMarker(context, mapView, R.drawable.boss)
     val sharedPreferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
