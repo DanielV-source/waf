@@ -20,7 +20,7 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
     private val mapController: IMapController = mapView.controller
     private var currentLocationMarker: OSMMarker = OSMMarker(context, mapView, null)
     private var nextPointLocationMarker: OSMMarker =
-        OSMMarker(context, mapView, R.drawable.marker_default_blue_xxx)
+        OSMMarker(context, mapView, R.drawable.boss)
     val sharedPreferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
 
     init {
@@ -57,7 +57,7 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         mapView.overlays.removeAll { it is Polygon }
 
         if (boss == true) {
-            nextPointLocationMarker.setIcon(R.drawable.marker_default_red_xxx)
+            nextPointLocationMarker.setIcon(R.drawable.boss)
         }
         nextPointLocationMarker.setPosition(latitude, longitude)
         var difficulty = sharedPreferences.getInt("difficulty", 0)
