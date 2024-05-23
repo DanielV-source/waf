@@ -22,6 +22,7 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         OSMMarker(context, mapView, R.drawable.wizard_marker)
     private var nextPointLocationMarker: OSMMarker =
         OSMMarker(context, mapView, R.drawable.goblin_marker)
+    private var navigate: Boolean = false
     val sharedPreferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
 
     init {
@@ -55,7 +56,9 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
 
     fun updateMapLocation(latitude: Double, longitude: Double) {
         val newPoint = GeoPoint(latitude, longitude)
-        //mapController.setCenter(newPoint)
+        if (navigate) {
+            setMapControllerCenter(newPoint.latitude, newPoint.longitude)
+        }
         currentLocationMarker.setPosition(latitude, longitude)
     }
 
@@ -80,6 +83,14 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         println("Game score: $totalScore")
         var circle: Polygon = createCircle(getNextPointLocationMarker().position, 0.05)
         mapView.overlays.add(circle)
+    }
+
+    fun setNavigate() {
+        navigate = !navigate
+    }
+
+    fun getNavigate(): Boolean {
+        return navigate
     }
 
     fun setMapControllerCenter(latitude: Double, longitude: Double) {
