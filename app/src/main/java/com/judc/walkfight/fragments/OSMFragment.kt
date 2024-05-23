@@ -117,19 +117,17 @@ class OSMFragment : Fragment() {
         }
 
         centerMapButton.setOnClickListener {
+            Log.d(OSMFragment().tag, "My OSM Fragment: Trying to center to the current location")
             val latitude = osmMapHandler.getCurrentLocationMarker().position.latitude
             val longitude = osmMapHandler.getCurrentLocationMarker().position.longitude
             osmMapHandler.setMapControllerCenter(latitude, longitude)
-            Toast.makeText(view.context, "Center on current location", Toast.LENGTH_LONG).show()
-            Log.d(OSMFragment().tag, "My OSM Fragment: Trying to center to the current location")
+            Toast.makeText(view.context, "Here you are!", Toast.LENGTH_LONG).show()
         }
 
         navigateButton.setOnClickListener {
             Log.d(OSMFragment().tag, "My OSM Fragment: Trying change Navigate to " + osmMapHandler.getNavigate())
 
             osmMapHandler.setNavigate()
-
-            Toast.makeText(view.context, "Navigate " + osmMapHandler.getNavigate(), Toast.LENGTH_LONG).show()
 
             navigateButton.setBackgroundResource(R.drawable.btn_navigate)
             navigateButton.text = "Navigate "
