@@ -12,6 +12,7 @@
     <color name="red_custom">#E31102</color>
     <color name="green">#4CAF50</color>
     <color name="gold">#FFB700</color>
-    <color name="silver">#7A7A7A</color>
-    <color name="bronze">#8A4D2B</color>
+    <color name="silver">#BABABA</color>
+    <color name="bronze">#FF8F52</color>
+    <color name="old">#E6B69F9F</color>
 </resources>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.judc.walkfight.R
 import com.judc.walkfight.Utils.Companion.replaceFragment
@@ -30,10 +31,13 @@ class MainFragment : Fragment() {
             replaceFragment(R.id.fragment_container, OSMFragment(), addToBackStack = true, tag = "OSMFragment")
         }
 
-
         val resumeAdventureButton: Button = view.findViewById(R.id.resume_adventure_menu)
-        resumeAdventureButton.setOnClickListener {
-            replaceFragment(R.id.fragment_container, OSMFragment(), addToBackStack = true, tag = "OSMFragment")
+        if(sharedPreferences.getInt("currentPoint", 0) >= 1) {
+            resumeAdventureButton.setOnClickListener {
+                replaceFragment(R.id.fragment_container, OSMFragment(), addToBackStack = true, tag = "OSMFragment")
+            }
+        }else{
+            resumeAdventureButton.isVisible = false
         }
 
         val myStatisticsButton: Button = view.findViewById(R.id.my_statistics_menu)

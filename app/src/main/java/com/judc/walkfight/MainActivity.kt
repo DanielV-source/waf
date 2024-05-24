@@ -170,6 +170,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 if(score != null) {
                     loserFrag.score = score
+                    ConnectionHelper.setScore(BigInteger(score))
                 }
                 replaceFragment(loserFrag)
             }
