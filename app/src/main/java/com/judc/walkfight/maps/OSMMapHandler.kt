@@ -18,9 +18,11 @@ import kotlin.math.sqrt
 class OSMMapHandler(private val context: Context, private val mapView: MapView) {
 
     private val mapController: IMapController = mapView.controller
-    private var currentLocationMarker: OSMMarker = OSMMarker(context, mapView, null)
+    private var currentLocationMarker: OSMMarker =
+        OSMMarker(context, mapView, R.drawable.wizard_marker)
     private var nextPointLocationMarker: OSMMarker =
-        OSMMarker(context, mapView, R.drawable.marker_default_blue_xxx)
+        OSMMarker(context, mapView, R.drawable.goblin_marker)
+    private var navigate: Boolean = false
     val sharedPreferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
 
     init {
@@ -29,6 +31,16 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         mapView.setTileSource(TileSourceFactory.MAPNIK)
 
         mapController.setZoom(15.0)
+
+        currentLocationMarker.setIconSize(
+            getCurrentLocationMarker().icon.intrinsicWidth * 2,
+            getCurrentLocationMarker().icon.intrinsicHeight * 2
+        )
+
+        nextPointLocationMarker.setIconSize(
+            getNextPointLocationMarker().icon.intrinsicWidth * 2,
+            getNextPointLocationMarker().icon.intrinsicHeight * 2
+        )
 
         mapController.setCenter(currentLocationMarker.getMarker().position)
         mapView.overlays.add(currentLocationMarker.getMarker())
@@ -44,7 +56,9 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
 
     fun updateMapLocation(latitude: Double, longitude: Double) {
         val newPoint = GeoPoint(latitude, longitude)
-        mapController.setCenter(newPoint)
+        if (navigate) {
+            setMapControllerCenter(newPoint.latitude, newPoint.longitude)
+        }
         currentLocationMarker.setPosition(latitude, longitude)
     }
 
@@ -57,7 +71,10 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         mapView.overlays.removeAll { it is Polygon }
 
         if (boss == true) {
-            nextPointLocationMarker.setIcon(R.drawable.marker_default_red_xxx)
+            nextPointLocationMarker.setIcon(
+                R.drawable.goblin_marker,
+                getNextPointLocationMarker().icon.intrinsicWidth * 2,
+                getNextPointLocationMarker().icon.intrinsicHeight * 2)
         }
         nextPointLocationMarker.setPosition(latitude, longitude)
         var difficulty = sharedPreferences.getInt("difficulty", 0)
@@ -66,6 +83,14 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         println("Game score: $totalScore")
         var circle: Polygon = createCircle(getNextPointLocationMarker().position, 0.05)
         mapView.overlays.add(circle)
+    }
+
+    fun setNavigate() {
+        navigate = !navigate
+    }
+
+    fun getNavigate(): Boolean {
+        return navigate
     }
 
     fun setMapControllerCenter(latitude: Double, longitude: Double) {
