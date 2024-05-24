@@ -11,35 +11,35 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/startadventuremenu"
+        android:id="@+id/start_adventure_menu"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="-10dp"
-        android:background="@color/white"
+        android:background="@drawable/button"
         android:text="@string/initmenu_startadventuremenu"
         android:textColor="@color/black"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 
     <Button
-        android:id="@+id/resumeadventuremenu"
+        android:id="@+id/resume_adventure_menu"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:background="@color/white"
+        android:background="@drawable/button"
         android:text="@string/initmenu_resumeadventuremenu"
         android:textColor="@color/black"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 
     <Button
-        android:id="@+id/mystatisticsmenu"
+        android:id="@+id/my_statistics_menu"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:background="@color/white"
+        android:background="@drawable/button"
         android:text="@string/initmenu_mystatisticsmenu"
         android:textColor="@color/black"
-        android:textSize="25dp" />
+        android:textSize="25sp" />
 </LinearLayout>

@@ -70,17 +70,13 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
         // Remove previous circle radius
         mapView.overlays.removeAll { it is Polygon }
 
-        if (boss == true) {
-            nextPointLocationMarker.setIcon(
-                R.drawable.goblin_marker,
-                getNextPointLocationMarker().icon.intrinsicWidth * 2,
-                getNextPointLocationMarker().icon.intrinsicHeight * 2)
-        }
+        nextPointLocationMarker.setIcon(
+            R.drawable.goblin_marker,
+            getNextPointLocationMarker().icon.intrinsicWidth * 2,
+            getNextPointLocationMarker().icon.intrinsicHeight * 2)
+
         nextPointLocationMarker.setPosition(latitude, longitude)
-        var difficulty = sharedPreferences.getInt("difficulty", 0)
-        println("Current difficulty: $difficulty")
-        var totalScore = sharedPreferences.getInt("totalScore", 0)
-        println("Game score: $totalScore")
+
         var circle: Polygon = createCircle(getNextPointLocationMarker().position, 0.05)
         mapView.overlays.add(circle)
     }

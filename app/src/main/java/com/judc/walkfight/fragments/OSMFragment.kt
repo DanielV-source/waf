@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.judc.walkfight.R
@@ -17,6 +18,9 @@ import com.judc.walkfight.Utils.Companion.replaceFragment
 import com.judc.walkfight.coroutines.fetchDirections
 import com.judc.walkfight.maps.OSMLocationHandler
 import com.judc.walkfight.maps.OSMMapHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.osmdroid.views.MapView
 
 class OSMFragment : Fragment() {
@@ -49,17 +53,18 @@ class OSMFragment : Fragment() {
                 println("Reading path from JSON: $coordinates")
 
                 if (coordinates.size >= 2) {
-                    val fetchedFightPoints = fetchDirections(
-                        getString(R.string.ors_api_key), coordinates[0], coordinates[1]
-                    )
-                    if (fetchedFightPoints != null) {
-                        println("Fetched fight points $fetchedFightPoints")
-                        val serializedString =
-                            fetchedFightPoints.joinToString(";") { it.joinToString(",") }
-                        sharedPreferences.edit().putString("fightPoints", serializedString).apply()
-                        sharedPreferences.edit().putInt("difficulty", 0).apply()
-                        sharedPreferences.edit().putInt("totalScore", 0).apply()
-                        fightPoints = serializedString
+                    CoroutineScope(Dispatchers.Main).launch {
+                        val fetchedFightPoints = fetchDirections(
+                            getString(R.string.ors_api_key), coordinates[0], coordinates[1]
+                        )
+
+                        if (fetchedFightPoints != null) {
+                            println("Fetched fight points $fetchedFightPoints")
+                            val serializedString =
+                                fetchedFightPoints.joinToString(";") { it.joinToString(",") }
+                            sharedPreferences.edit().putString("fightPoints", serializedString).apply()
+                            fightPoints = serializedString
+                        }
                     }
                 }
             }
@@ -146,5 +151,19 @@ class OSMFragment : Fragment() {
 
     companion object {
         fun newInstance() = OSMFragment()
+
+        fun isBoss(context: Context?): Boolean {
+            val sharedPreferences = context?.getSharedPreferences("preferences", Context.MODE_PRIVATE)
+            val currentPoint = sharedPreferences?.getInt("currentPoint", 0)
+            val fightPoints = sharedPreferences?.getString("fightPoints", "")
+            val coordinateStrings = fightPoints?.split(";")
+            val fightPointsList = coordinateStrings?.map { it.split(",").map { it.toDouble() } }
+            var isBoss = false
+            if(fightPointsList != null) {
+                isBoss = (fightPointsList.size == currentPoint)
+            }
+            return isBoss
+        }
+
     }
 }

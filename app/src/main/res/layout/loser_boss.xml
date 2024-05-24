@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/material_dynamic_neutral20"
     android:orientation="vertical">
 
@@ -11,7 +12,8 @@
         android:layout_height="112dp"
         android:layout_marginTop="86dp"
         android:backgroundTint="@color/red_custom"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        app:cardCornerRadius="10dp">
 
         <GridLayout
             android:layout_width="match_parent"
@@ -33,33 +35,117 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/stadisticalInformation"
+        android:id="@+id/statistical_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50sp"
-        android:text="@string/loser_boss_stadisticalInformation"
+        android:text="@string/boss_fight_statistics"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:textIsSelectable="false"
+        android:textSize="28sp" />
 
-    <TextView
-        android:id="@+id/currentFight"
+    <LinearLayout
+        android:layout_marginTop="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/loser_boss_currentFight"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:textIsSelectable="false"
+        android:textAlignment="center">
+
+        <TextView
+            android:id="@+id/fight_ultimates"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:text="@string/fight_statistics_ultimates"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textIsSelectable="false"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/fight_ultimates_value"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:text="@string/zero_value"
+            android:textAlignment="center"
+            android:textIsSelectable="false"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:textIsSelectable="false"
+        android:textAlignment="center">
+
+        <TextView
+            android:id="@+id/fight_enemy_attacks"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:text="@string/fight_statistics_enemy_attacks"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textIsSelectable="false"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/fight_enemy_attacks_value"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:text="@string/zero_value"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textIsSelectable="false"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="-65sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:textIsSelectable="false"
+        android:textAlignment="center">
+
+        <TextView
+            android:id="@+id/fight_score"
+            android:layout_width="213sp"
+            android:layout_height="wrap_content"
+            android:text="@string/fight_statistics_score"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textIsSelectable="false"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/fight_score_value"
+            android:layout_width="100sp"
+            android:layout_height="wrap_content"
+            android:text="@string/points"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textIsSelectable="false"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <Button
-        android:id="@+id/tryfightagain"
+        android:id="@+id/try_fight_again"
         android:layout_width="162dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="164dp"
-        android:background="@color/white"
         android:text="@string/loser_boss_tryfightagain"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:background="@drawable/button"/>
 
     <Button
         android:id="@+id/main_menu"
@@ -67,7 +153,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:background="@color/white"
+        android:background="@drawable/button"
         android:text="@string/mainmenu"
         android:textColor="@color/black" />
 

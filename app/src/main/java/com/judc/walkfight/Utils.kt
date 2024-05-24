@@ -94,7 +94,7 @@ class Utils {
                 transaction.addToBackStack(tag)
             }
 
-            transaction.commit()
+            transaction.commitAllowingStateLoss()
         }
     }
 }

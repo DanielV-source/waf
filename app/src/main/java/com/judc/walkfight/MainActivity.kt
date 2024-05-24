@@ -1,8 +1,10 @@
 package com.judc.walkfight
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.hardware.Sensor
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -14,9 +16,12 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
+import com.judc.walkfight.fragments.LoserFragment
 import com.judc.walkfight.fragments.MainFragment
 import com.judc.walkfight.fragments.ProfileFragment
+import com.judc.walkfight.fragments.WinnerFragment
 import com.judc.walkfight.utils.GetSensorUtilities
+import java.math.BigInteger
 
 class MainActivity : AppCompatActivity() {
 
@@ -71,6 +76,10 @@ class MainActivity : AppCompatActivity() {
             if (supportFragmentManager.getBackStackEntryAt(0).name == "MainFragment")
                 menuItem.setVisible(false)
         }
+        if(ConnectionHelper.getEmail().isEmpty()) {
+            val profileItem: MenuItem = navView.menu.findItem(R.id.nav_profile)
+            profileItem.setVisible(false)
+        }
         navView.setNavigationItemSelectedListener { mItem ->
             when (mItem.itemId) {
                 R.id.nav_home -> {
@@ -82,11 +91,31 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(ProfileFragment())
                     true
                 }
+
+                R.id.nav_logout -> {
+                    ConnectionHelper.signOut()
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    true
+                }
+
                 else -> false
             }.also {
                 drawerLayout.closeDrawer(GravityCompat.START)
             }
         }
+
+        val result = intent?.getStringExtra("game_result")
+        val ultimates = intent?.getStringExtra("game_ultimates")
+        val score = intent?.getStringExtra("game_score")
+        val enemyAttacks = intent?.getStringExtra("game_enemyAttacks")
+
+        if (result != null) {
+            Log.d("MainActivity", "Game result received: $result")
+            handleGameResult(result, ultimates, enemyAttacks, score)
+        }
+
         val sensorChecker = GetSensorUtilities()
         sensorChecker.isSensorAvailable(this, Sensor.TYPE_ACCELEROMETER)
         sensorChecker.isSensorAvailable(this, Sensor.TYPE_GYROSCOPE)
@@ -107,6 +136,44 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton(getString(R.string.yes)) { _, _ -> finish() }
             .setNegativeButton(getString(R.string.no), null)
             .show()
+    }
+
+
+    /**
+     * Handles the result of the battle in Unity and replaces with the right fragment
+     */
+    private fun handleGameResult(result: String, ultimates: String?, enemyAttacks: String?, score: String?) {
+        when (result) {
+            "win" -> {
+                // WIN LOGIC
+                val winnerFrag = WinnerFragment()
+                if(ultimates != null) {
+                    winnerFrag.ultimates = ultimates
+                }
+                if(enemyAttacks != null) {
+                    winnerFrag.enemyAttacks = enemyAttacks
+                }
+                if(score != null) {
+                    winnerFrag.score = score
+                    ConnectionHelper.setScore(BigInteger(score))
+                }
+                replaceFragment(winnerFrag)
+            }
+            "lose" -> {
+                // LOSE LOGIC
+                val loserFrag = LoserFragment()
+                if(ultimates != null) {
+                    loserFrag.ultimates = ultimates
+                }
+                if(enemyAttacks != null) {
+                    loserFrag.enemyAttacks = enemyAttacks
+                }
+                if(score != null) {
+                    loserFrag.score = score
+                }
+                replaceFragment(loserFrag)
+            }
+        }
     }
 
     companion object {
