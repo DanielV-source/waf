@@ -35,7 +35,7 @@
         </androidx.appcompat.widget.Toolbar>
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/image_view"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/waf_app_icon"
@@ -43,7 +43,7 @@
             android:layout_marginTop="16dp" />
 
         <EditText
-            android:id="@+id/startMsgText"
+            android:id="@+id/start_msg_text"
             style="@style/Widget.AppCompat.Light.AutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="203dp"
@@ -92,6 +92,7 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_margin="50dp"
+            android:background="@drawable/button"
             android:translationY="-60dp" />
 
         <Button
@@ -99,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="50dp"
-            android:background="@color/white"
+            android:background="@drawable/button"
             android:text="@string/main_skip_signin"
             android:textColor="@color/black"
             android:translationY="0dp" />

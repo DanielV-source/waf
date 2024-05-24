@@ -23,6 +23,11 @@ import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.judc.walkfight.fragments.FightFragment
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -46,10 +51,7 @@ class LoginActivity : AppCompatActivity() {
             val account = task.getResult(ApiException::class.java)
             account?.idToken?.let { firebaseAuthWithGoogle(it, account) }
         } catch (e: ApiException) {
-            Log.w(TAG, "@string/google_sign_in_failed", e)
-            Toast.makeText(this,
-                "@string/google_sign_in_failed",
-                Toast.LENGTH_LONG).show()
+            Log.w(TAG, "Google sign in failed", e)
         }
     }
 
@@ -61,25 +63,6 @@ class LoginActivity : AppCompatActivity() {
         launcher.launch(signInIntent)
     }
 
-    /**
-     * Sign out function from Google and Firebase services
-     */
-    private fun signOut() {
-        val googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this)
-        if (googleSignInAccount != null) {
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()
-            val googleSignInClient = GoogleSignIn.getClient(this, gso)
-            googleSignInClient.signOut().addOnCompleteListener(this) {
-                FirebaseAuth.getInstance().signOut()
-            }
-        } else {
-            // If sign in fails, display an error message
-            Toast.makeText(this,
-                "@string/google_sign_in_failed",
-                Toast.LENGTH_LONG).show()
-            FirebaseAuth.getInstance().signOut()
-        }
-    }
 
     /**
      * This is the first function called in this activity. Creates the default layout
@@ -117,6 +100,7 @@ class LoginActivity : AppCompatActivity() {
 
         val skipSignInButton: Button = findViewById(R.id.skip_signin)
         skipSignInButton.setOnClickListener {
+            ConnectionHelper.resetCurrentUser()
             skipAccessApp()
         }
     }
@@ -126,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
      */
     override fun onStart() {
         super.onStart()
-
+        ConnectionHelper.setLoginActivity(this)
         // Check if user is signed in (non-null) and go to the next screen
         accessApp()
     }
@@ -137,12 +121,18 @@ class LoginActivity : AppCompatActivity() {
     private fun accessApp() {
         val user = mAuth.currentUser
         if (user != null) {
-            // TODO: pass the user variable to other screens
+            // Load user data
+            ConnectionHelper.setEmail(user.email)
+            ConnectionHelper.loadData()
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+
             // Finish the current activity
             finish()
+        }else{
+            // Load user data
+            ConnectionHelper.loadData()
         }
     }
 
@@ -150,8 +140,6 @@ class LoginActivity : AppCompatActivity() {
      * Go to next screen skipping sign in
      */
     private fun skipAccessApp() {
-        // TODO: pass the user variable to other screens
-
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
 
@@ -177,14 +165,13 @@ class LoginActivity : AppCompatActivity() {
                     val user = FirebaseAuth.getInstance().currentUser
                     if (user != null) {
                         user.displayName?.let { Log.w("Warning", it) }
+                        ConnectionHelper.setEmail(user.email)
                     }
-                    // TODO: pass the user variable to other screens
+
                     accessApp()
                 } else {
                     // If sign in fails, display an error message
-                    Toast.makeText(this,
-                        "@string/firebase_error",
-                        Toast.LENGTH_LONG).show()
+                    Log.d(TAG, "Firebase error")
                 }
             }
     }

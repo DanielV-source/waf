@@ -26,7 +26,7 @@ fun fetchDirections(apiKey: String, start: String, end: String): List<List<Doubl
                     val fightPoint1 = fullPathPoints[fullPathPointsSize / 4]
                     val fightPoint2 = fullPathPoints[fullPathPointsSize / 2]
                     val fightPoint3 =
-                        fullPathPoints[(fullPathPointsSize * 5 / 6)] // Changed from /1.2 to * 5/6
+                        fullPathPoints[((fullPathPointsSize * 5) / 6)] // Changed from /1.2 to * 5/6
                     val finalBoss = fullPathPoints.last()
 
                     // Return the list of fight points

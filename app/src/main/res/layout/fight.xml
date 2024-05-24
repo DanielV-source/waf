@@ -7,22 +7,12 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/win_fight"
-        android:layout_width="162dp"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="Win fight"
-        android:textColor="@color/black" />
-
-    <Button
-        android:id="@+id/lose_fight"
-        android:layout_width="162dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@color/white"
-        android:text="Lose fight"
-        android:textColor="@color/black" />
+        android:textColor="@color/white"
+        android:layout_margin="50sp"
+        android:text="@string/support_text"
+        />
 
 </LinearLayout>

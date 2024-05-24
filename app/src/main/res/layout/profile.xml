@@ -16,8 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="My Profile"
-            android:textSize="30sp"
+            android:text="@string/profile"
+            android:textSize="48sp"
             android:textColor="@color/red_custom"
             android:textStyle="bold"
             android:layout_marginEnd="0dp" />
@@ -25,55 +25,31 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="100sp"
+        android:layout_marginBottom="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Nombre"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginEnd="20dp" />
-
-        <EditText
-            android:id="@+id/editTextName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            android:hint="Jesús Ulises Daniel Caetán"
-            android:textColorHint="@color/black"
-            android:background="@color/white"
-            android:inputType="textPersonName"
-            android:autofillHints=""/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="@string/username"
             android:textSize="20sp"
+            android:textIsSelectable="false"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginEnd="20dp" />
 
         <EditText
-            android:id="@+id/editTextUsername"
-            android:layout_width="0dp"
+            android:id="@+id/profile_username_value"
+            android:textAlignment="center"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:textColor="@android:color/black"
-            android:hint="@string/judc"
+            android:hint="@string/username_placeholder"
+            android:maxLines="1"
+            android:maxWidth="170dp"
             android:textColorHint="@color/black"
             android:background="@color/white"
             android:inputType="textPersonName"
@@ -91,59 +67,47 @@
             android:layout_height="wrap_content"
             android:text="@string/email"
             android:textSize="20sp"
+            android:textIsSelectable="false"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginEnd="20dp" />
 
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/profile_email_value"
+            android:layout_gravity="center"
+            android:layout_marginStart="20sp"
+            android:layout_width="170dp"
+            android:maxWidth="170dp"
+            android:maxHeight="25dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textIsSelectable="false"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@android:color/black"
-            android:hint="@string/waf_judc_gmail_com"
-            android:textColorHint="@color/black"
-            android:background="@color/white"
-            android:inputType="textEmailAddress"
-            android:autofillHints="" />
+            android:text="@string/email_placeholder"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginEnd="20dp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="250sp"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/buttonSave"
+            android:id="@+id/profile_button_save"
             android:layout_width="158dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:text="@string/guardar"
-            android:textColor="@color/black" />
+            android:text="@string/save"
+            android:textColor="@color/black"
+            android:background="@drawable/button"/>
 
-        <Button
-            android:id="@+id/buttonEdit"
-            android:layout_width="158dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:text="@string/editar"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/buttonHelp"
-            android:layout_width="158dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:text="@string/ayuda"
-            android:textColor="@color/black" />
 
     </LinearLayout>
 

@@ -23,7 +23,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val sharedPreferences = view.context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
 
-        val startAdventureButton: Button = view.findViewById(R.id.startadventuremenu)
+        val startAdventureButton: Button = view.findViewById(R.id.start_adventure_menu)
         startAdventureButton.setOnClickListener {
             sharedPreferences.edit().putInt("currentPoint", 0).apply()
             // TODO: Restart the actual destination here
@@ -31,12 +31,12 @@ class MainFragment : Fragment() {
         }
 
 
-        val resumeAdventureButton: Button = view.findViewById(R.id.resumeadventuremenu)
+        val resumeAdventureButton: Button = view.findViewById(R.id.resume_adventure_menu)
         resumeAdventureButton.setOnClickListener {
             replaceFragment(R.id.fragment_container, OSMFragment(), addToBackStack = true, tag = "OSMFragment")
         }
 
-        val myStatisticsButton: Button = view.findViewById(R.id.mystatisticsmenu)
+        val myStatisticsButton: Button = view.findViewById(R.id.my_statistics_menu)
         myStatisticsButton.setOnClickListener {
             replaceFragment(R.id.fragment_container, MyStatisticsFragment(), addToBackStack = true, tag = "MyStatisticsFragment")
         }

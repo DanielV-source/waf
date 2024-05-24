@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/material_dynamic_neutral20"
     android:orientation="vertical"
-    android:padding="0dp">
+    android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,19 +14,19 @@
         android:gravity="center"
         android:paddingBottom="5dp"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="57dp">
+        tools:layout_editor_absoluteY="57dp"
+        android:layout_marginBottom="25dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:fontFamily="cursive"
             android:text="@string/ranking_rankingText"
             android:textColor="@color/red_custom"
             android:textSize="50sp"
             android:textStyle="bold"
-            android:paddingTop="5dp"
-            android:translationY="25dp" />
+            android:translationY="25dp"
+           />
     </LinearLayout>
 
     <LinearLayout
@@ -35,18 +35,31 @@
         android:gravity="left"
         android:paddingBottom="5dp">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:layout_marginStart="10sp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/player_1" />
+            android:elevation="12dp"
+            android:id="@+id/view1"
+            app:cardCornerRadius="30dp">
+            <ImageView
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="-1dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@drawable/player_1"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
+
 
         <TextView
+            android:id="@+id/player1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="#1 - 1.345.427 points"
-            android:textColor="@color/white"
-            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:text="#1 Player1 - ????? pts"
+            android:textColor="@color/gold"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingTop="10dp"/>
     </LinearLayout>
@@ -58,18 +71,30 @@
         android:paddingBottom="5dp"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:layout_marginStart="10sp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/player_2" />
+            android:elevation="12dp"
+            android:id="@+id/view2"
+            app:cardCornerRadius="30dp">
+            <ImageView
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="-2dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@drawable/player_2"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/player2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="#2 - 1.290.786 points"
-            android:textColor="@color/white"
-            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:text="#2 Player2 - ????? pts"
+            android:textColor="@color/silver"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingTop="5dp" />
     </LinearLayout>
@@ -81,18 +106,30 @@
         android:paddingBottom="5dp"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:layout_marginStart="10sp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/player_3" />
+            android:elevation="12dp"
+            android:id="@+id/view3"
+            app:cardCornerRadius="30dp">
+            <ImageView
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="-2dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@drawable/player_3"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/player3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="#3 - 1.199.375 points"
-            android:textColor="@color/white"
-            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:text="#3 Player3 - ????? pts"
+            android:textColor="@color/bronze"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingTop="5dp" />
     </LinearLayout>
@@ -104,18 +141,30 @@
         android:paddingBottom="5dp"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:layout_marginStart="10sp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/player_4" />
+            android:elevation="12dp"
+            android:id="@+id/view4"
+            app:cardCornerRadius="30dp">
+            <ImageView
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="-2dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@drawable/player_4"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/player4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="#4 - 1.038.583 points"
+            android:layout_marginStart="10dp"
+            android:text="#4 Player4 - ????? pts"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingTop="5dp" />
     </LinearLayout>
@@ -127,18 +176,30 @@
         android:paddingBottom="5dp"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:layout_marginStart="10sp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/player_5" />
+            android:elevation="12dp"
+            android:id="@+id/view5"
+            app:cardCornerRadius="30dp">
+            <ImageView
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="-2dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@drawable/player_5"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/player5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="#5 - 980.473 points"
+            android:layout_marginStart="10dp"
+            android:text="#5 Player5 - ????? pts"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingTop="5dp" />
     </LinearLayout>
@@ -150,18 +211,30 @@
         android:paddingBottom="5dp"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:layout_marginStart="10sp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/player_6" />
+            android:elevation="12dp"
+            android:id="@+id/view6"
+            app:cardCornerRadius="30dp">
+            <ImageView
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="-2dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@drawable/player_6"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/player6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="#6 - 895.583 points"
+            android:layout_marginStart="10dp"
+            android:text="#6 Player6 - ????? pts"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingTop="5dp" />
     </LinearLayout>
@@ -173,18 +246,30 @@
         android:paddingBottom="5dp"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:layout_marginStart="10sp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/player_7" />
+            android:elevation="12dp"
+            android:id="@+id/view7"
+            app:cardCornerRadius="30dp">
+            <ImageView
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="-2dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@drawable/player_7"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/player7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="#7 - 768.978 points"
+            android:layout_marginStart="10dp"
+            android:text="#7 Player7 - ????? pts"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingTop="5dp" />
     </LinearLayout>
@@ -196,18 +281,30 @@
         android:paddingBottom="5dp"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:layout_marginStart="10sp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/player_8" />
+            android:elevation="12dp"
+            android:id="@+id/view8"
+            app:cardCornerRadius="30dp">
+            <ImageView
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="-2dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@drawable/player_8"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/player8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="#8 - 687.382 points"
+            android:layout_marginStart="10dp"
+            android:text="#8 Player8 - ????? pts"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingTop="5dp" />
     </LinearLayout>
@@ -219,18 +316,30 @@
         android:paddingBottom="5dp"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:layout_marginStart="10sp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/player_9" />
+            android:elevation="12dp"
+            android:id="@+id/view9"
+            app:cardCornerRadius="30dp">
+            <ImageView
+                android:layout_marginStart="-2dp"
+                android:layout_marginTop="-2dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:src="@drawable/player_9"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/player9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="#9 - 563.223 points"
+            android:layout_marginStart="10dp"
+            android:text="#9 Player9 - ????? pts"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingTop="5dp" />
     </LinearLayout>
@@ -242,18 +351,30 @@
         android:paddingBottom="5dp"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
+        <androidx.cardview.widget.CardView
+            android:layout_marginStart="10sp"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/player_10" />
+            android:elevation="12dp"
+            android:id="@+id/view10"
+            app:cardCornerRadius="30dp">
+            <ImageView
+                android:layout_marginStart="-4dp"
+                android:layout_marginTop="-2dp"
+                android:layout_width="58dp"
+                android:layout_height="56dp"
+                android:src="@drawable/player_10"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/player10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="#10 - 478.876 points"
+            android:layout_marginStart="10dp"
+            android:text="#10 Player10 - ????? pts"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:paddingTop="5dp" />
     </LinearLayout>
