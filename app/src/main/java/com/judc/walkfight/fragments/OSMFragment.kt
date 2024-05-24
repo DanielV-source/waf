@@ -52,19 +52,17 @@ class OSMFragment : Fragment() {
                 val coordinates = listOf(start, end)
                 println("Reading path from JSON: $coordinates")
 
-                if (coordinates.size >= 2) {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        val fetchedFightPoints = fetchDirections(
-                            getString(R.string.ors_api_key), coordinates[0], coordinates[1]
-                        )
+                CoroutineScope(Dispatchers.Main).launch {
+                    val fetchedFightPoints = fetchDirections(
+                        getString(R.string.ors_api_key), coordinates[0], coordinates[1]
+                    )
 
-                        if (fetchedFightPoints != null) {
-                            println("Fetched fight points $fetchedFightPoints")
-                            val serializedString =
-                                fetchedFightPoints.joinToString(";") { it.joinToString(",") }
-                            sharedPreferences.edit().putString("fightPoints", serializedString).apply()
-                            fightPoints = serializedString
-                        }
+                    if (fetchedFightPoints != null) {
+                        println("Fetched fight points $fetchedFightPoints")
+                        val serializedString =
+                            fetchedFightPoints.joinToString(";") { it.joinToString(",") }
+                        sharedPreferences.edit().putString("fightPoints", serializedString).apply()
+                        fightPoints = serializedString
                     }
                 }
             }
@@ -91,7 +89,7 @@ class OSMFragment : Fragment() {
         val coordinateStrings = fightPoints?.split(";")
         val fightPointsList = coordinateStrings?.map { it.split(",").map { it.toDouble() } }
         val startingPoint = fightPointsList?.get(0)
-        var currentPoint = sharedPreferences.getInt("currentPoint", 0)
+        val currentPoint = sharedPreferences.getInt("currentPoint", 0)
         val nextPoint = fightPointsList?.get(currentPoint)
         if (currentPoint == 0) {
             if (startingPoint != null && startingPoint.size >= 2) {
@@ -117,7 +115,6 @@ class OSMFragment : Fragment() {
                 tag = "FightFragment"
             )
 
-            Toast.makeText(view.context, "Going to FightFragment", Toast.LENGTH_LONG).show()
             Log.d(OSMFragment().tag, "My OSM Fragment: Trying to load FightFragment")
         }
 
@@ -150,19 +147,19 @@ class OSMFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = OSMFragment()
 
         fun isBoss(context: Context?): Boolean {
-            val sharedPreferences = context?.getSharedPreferences("preferences", Context.MODE_PRIVATE)
-            val currentPoint = sharedPreferences?.getInt("currentPoint", 0)
-            val fightPoints = sharedPreferences?.getString("fightPoints", "")
-            val coordinateStrings = fightPoints?.split(";")
-            val fightPointsList = coordinateStrings?.map { it.split(",").map { it.toDouble() } }
-            var isBoss = false
-            if(fightPointsList != null) {
-                isBoss = (fightPointsList.size == currentPoint)
+            if(context == null) {
+                return false
             }
-            return isBoss
+
+            val sharedPreferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
+            val currentPoint = sharedPreferences.getInt("currentPoint", 0)
+            val fightPoints = sharedPreferences.getString("fightPoints", "") ?: return false
+            val coordinateStrings = fightPoints.split(";")
+            val fightPointsList = coordinateStrings.map { it.split(",").map { it.toDouble() } }
+
+            return (fightPointsList.size == currentPoint)
         }
 
     }
