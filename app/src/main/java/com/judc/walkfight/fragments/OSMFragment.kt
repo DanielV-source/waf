@@ -81,7 +81,7 @@ class OSMFragment : Fragment() {
             if (fightReached) {
                 fightButton.visibility = View.VISIBLE
             } else {
-                fightButton.visibility = View.GONE
+                fightButton.visibility = View.INVISIBLE
             }
             println("Current user location: ${osmMapHandler.getCurrentLocationMarker().position}")
         }
@@ -123,7 +123,6 @@ class OSMFragment : Fragment() {
             val latitude = osmMapHandler.getCurrentLocationMarker().position.latitude
             val longitude = osmMapHandler.getCurrentLocationMarker().position.longitude
             osmMapHandler.setMapControllerCenter(latitude, longitude)
-            Toast.makeText(view.context, "Here you are!", Toast.LENGTH_LONG).show()
         }
 
         navigateButton.setOnClickListener {
@@ -131,16 +130,26 @@ class OSMFragment : Fragment() {
 
             osmMapHandler.setNavigate()
 
-            navigateButton.setBackgroundResource(R.drawable.btn_navigate)
-            navigateButton.text = "Navigate "
-            if (osmMapHandler.getNavigate()) {
-                navigateButton.setBackgroundResource(R.drawable.btn_navigate_false)
-                navigateButton.text = "Unlock "
+            var navigate = osmMapHandler.getNavigate()
+            var backgroundResource = R.drawable.btn_navigate
+            var navigateButtonText = R.string.osm_navigate_button
+
+            if (navigate) {
+                backgroundResource = R.drawable.btn_navigate_false
+                navigateButtonText = R.string.osm_no_navigate_button
 
                 val latitude = osmMapHandler.getCurrentLocationMarker().position.latitude
                 val longitude = osmMapHandler.getCurrentLocationMarker().position.longitude
                 osmMapHandler.setMapControllerCenter(latitude, longitude)
             }
+
+            navigateButton.setBackgroundResource(backgroundResource)
+            navigateButton.text = getString(navigateButtonText)
+
+            mapView.setMultiTouchControls(!navigate)
+            mapView.isFocusable = !navigate
+            mapView.isFocusableInTouchMode = !navigate
+            mapView.setOnTouchListener { _, _ -> navigate }
         }
 
         return view
