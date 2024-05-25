@@ -12,7 +12,6 @@
     <string name="ranking_rankingText">RANKING</string>
     <string name="ranking_points">points</string>
 
-
     <string name="winner_boss_winnerBoss">Congrats!</string>
     <string name="winner_boss_sharewithfriends">Share with friends</string>
 
@@ -23,6 +22,13 @@
     <string name="fight_statistics_enemy_attacks">Enemy attacks</string>
     <string name="fight_statistics_score">Score</string>
 
+    <string name="osm_fight_button">Fight!</string>
+    <string name="osm_navigate_button">Navigate </string>
+    <string name="osm_no_navigate_button">Unlock </string>
+
+    <string name="current_location_marker_snipped">Let\'s make magic!</string>
+    <string name="next_point_location_marker_title">Goblin</string>
+    <string name="next_point_location_marker_snipped">You can\'t beat me!</string>
 
     <string name="loser_boss_loser">Defeat</string>
 

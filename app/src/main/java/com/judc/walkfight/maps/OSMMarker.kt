@@ -47,4 +47,9 @@ class OSMMarker (private val context: Context, private val mapView: MapView, new
     fun setPosition(latitude: Double, longitude: Double) {
         osmMarker.position = GeoPoint(latitude, longitude)
     }
+
+    fun setMarkerText(title: String, snippet: String) {
+        osmMarker.title = title
+        osmMarker.snippet = snippet
+    }
 }
