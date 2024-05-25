@@ -2,6 +2,7 @@ package com.judc.walkfight.maps
 
 import android.content.Context
 import android.preference.PreferenceManager
+import com.judc.walkfight.ConnectionHelper
 import com.judc.walkfight.R
 import org.osmdroid.api.IMapController
 import org.osmdroid.config.Configuration
@@ -30,16 +31,30 @@ class OSMMapHandler(private val context: Context, private val mapView: MapView) 
             .load(context, PreferenceManager.getDefaultSharedPreferences(context))
         mapView.setTileSource(TileSourceFactory.MAPNIK)
 
-        mapController.setZoom(15.0)
+        mapController.setZoom(17.0)
 
         currentLocationMarker.setIconSize(
-            getCurrentLocationMarker().icon.intrinsicWidth * 2,
+            (getCurrentLocationMarker().icon.intrinsicWidth * 1.5).toInt(),
             getCurrentLocationMarker().icon.intrinsicHeight * 2
+        )
+        var username: String
+        try {
+            username = ConnectionHelper.getUserName()
+        } catch (e: Exception) {
+            username = context.getString(R.string.username_placeholder)
+        }
+        currentLocationMarker.setMarkerText(
+            username,
+            context.getString(R.string.current_location_marker_snipped)
         )
 
         nextPointLocationMarker.setIconSize(
-            getNextPointLocationMarker().icon.intrinsicWidth * 2,
-            getNextPointLocationMarker().icon.intrinsicHeight * 2
+            getNextPointLocationMarker().icon.intrinsicWidth,
+            getNextPointLocationMarker().icon.intrinsicHeight
+        )
+        nextPointLocationMarker.setMarkerText(
+            context.getString(R.string.next_point_location_marker_title),
+            context.getString(R.string.next_point_location_marker_snipped)
         )
 
         mapController.setCenter(currentLocationMarker.getMarker().position)
