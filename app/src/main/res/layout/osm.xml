@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".OSMWaypointActivity">
+    android:layout_height="match_parent">
 
     <org.osmdroid.views.MapView
         android:id="@+id/osmmap"
@@ -23,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginRight="12dp"
-            android:layout_marginTop="360dp"
+            android:layout_marginTop="350dp"
             android:clickable="true"
             android:src="@drawable/osm_ic_center_map"
             app:backgroundTint="@color/grey" />
@@ -39,8 +37,7 @@
             android:clickable="true"
             android:drawablePadding="@dimen/cardview_compat_inset_shadow"
             android:drawableStart="@drawable/round_navigation_white_48"
-            android:text="Navigate"
-            android:textAlignment="textStart"
+            android:text="@string/osm_navigate_button"
             android:textColor="@color/white" />
 
         <Button
@@ -48,9 +45,9 @@
             android:layout_width="162dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:background="@color/white"
-            android:text="Fight!"
+            android:text="@string/osm_fight_button"
             android:textColor="@color/black" />
     </LinearLayout>
 
